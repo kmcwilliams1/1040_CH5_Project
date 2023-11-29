@@ -1,0 +1,3 @@
+C:/Users/Other/CLionProjects/1040_CH5_PracticeProject/cmake-build-debug/CMakeFiles/1040_CH5_PracticeProject.dir
+C:/Users/Other/CLionProjects/1040_CH5_PracticeProject/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Other/CLionProjects/1040_CH5_PracticeProject/cmake-build-debug/CMakeFiles/rebuild_cache.dir
