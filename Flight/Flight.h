@@ -21,6 +21,14 @@ struct FlightUpdate {
     string newDepartureGate;
 };
 
+struct MaintenanceRequests{
+    [[maybe_unused]] float fuelLevel;
+    [[maybe_unused]] bool engineInspected;
+    [[maybe_unused]] float tirePressure;
+    [[maybe_unused]] bool brakeCheck;
+    int requestID;
+};
+
 struct CrewList {
    vector<Pilot*> pilotList;
    vector<Attendant*> attendantList;
@@ -28,15 +36,18 @@ struct CrewList {
 
 
 class Flight {
+
 private:// 7 points of study from Chapter 5
     // Point 1: List
     list<CrewList> listOfCrewMembers;
 
     // Point 2: Linked List
     list<FlightUpdate> dynamicFlightUpdates;
+    // Point 2: Linked List
+    list<MaintenanceRequests> maintenanceRequests;
 
     // Point 3: Pair
-    pair<string, string> departureAndArrivalCities;
+    vector<pair<string, string>> departureAndArrivalCities;
 
     // Point 4: Map
     map<int, string> flightDetailsMap;
@@ -59,10 +70,11 @@ private: // Variables
     time_t departureTime;
     time_t landingTime;
 
-public:// Methods
+
+public:// 7 points of study from Chapter 5 - Methods
 
     // Point 1:  List
-    void addCrewMember(const string& name, Crew::EmployeeType type);
+    void addCrewMember(const string &name, Crew::EmployeeType type);
     void removeCrewMember(int employeeID);
     list<CrewList> getCrewMembers() const;
     bool isCrewMemberInList(int employeeID) const;
@@ -71,9 +83,86 @@ public:// Methods
 
     // Point 2: Linked List
     void addFlightUpdate(const string &newDepartureTime, const string &newDepartureGate);
+    void addMaintenanceRequest(float fuelLevel, bool engineInspected, float tirePressure, bool brakeCheck);
+    void removeMaintenanceRequest(int requestID);
+    list<MaintenanceRequests> getMaintenanceRequests() const;
+    bool isMaintenanceRequestInList(int requestID) const;
+    void clearMaintenanceRequests();
 
 
+    // Point 3: Pair
+    void setDepartureAndArrivalCities(const string &departureCity, const string &arrivalCity);
+    vector<pair<string, string>> getDepartureAndArrivalCities() const;
+
+
+    // Point 4: Map
+    void addFlightDetail(int detailID, const string &detailInfo);
+    void removeFlightDetail(int detailID);
+    map<int, string> getFlightDetails() const;
+
+
+    // Point 5: Queue (Arriving Flights)
+    void enqueueArrivingFlight(const Flight &arrivingFlight);
+    Flight dequeueArrivingFlight();
+
+
+    // Point 6: Deque (Departing Flights)
+    void enqueueDepartingFlight(const Flight &departingFlight);
+    Flight dequeueDepartingFlight();
+
+
+    // Point 7: Set
+    void addDestinationToSet(const string &destination);
+    void removeDestinationFromSet(const string &destination);
+    set<string> getUniqueDestinations() const;
+
+
+
+public:
     void addCrewMember(int employeeID, Crew::EmployeeType type);
+
+    // Getter and Setter for flightNumber
+    const string& getFlightNumber() const {
+        return flightNumber;
+    }
+    void setFlightNumber(const string& newFlightNumber) {
+        flightNumber = newFlightNumber;
+    }
+
+    // Getter and Setter for gate
+    const string& getGate() const {
+        return gate;
+    }
+    void setGate(const string& newGate) {
+        gate = newGate;
+    }
+
+    // Getter and Setter for passengerCount
+    int getPassengerCount() const {
+        return passengerCount;
+    }
+    void setPassengerCount(int newPassengerCount) {
+        passengerCount = newPassengerCount;
+    }
+
+    // Getter and Setter for seatCount
+    int getSeatCount() const {
+        return seatCount;
+    }
+    void setSeatCount(int newSeatCount) {
+        seatCount = newSeatCount;
+    }
+
+    // Getter and Setter for isFueled
+    bool getIsFueled() const {
+        return isFueled;
+    }
+    void setIsFueled(bool newIsFueled) {
+        isFueled = newIsFueled;
+    }
+
+
+
 };
 
 #endif //INC_1040_CH5_PRACTICEPROJECT_FLIGHT_H

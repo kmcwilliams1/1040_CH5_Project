@@ -8,7 +8,7 @@ void Collection::writeCrewProperties(ostream &dataFile) {
 
 }
 
-void Collection::writePassengerProperties(ostream &dataFile) {
+void Collection::writeAirportProperties(ostream &dataFile) {
 
 }
 
@@ -20,6 +20,6 @@ void Collection::readCrewProperties(const string &basicString) {
 
 }
 
-void Collection::readPassengerProperties(const string &basicString) {
+void Collection::readAirportProperties(const string &basicString) {
 
 }

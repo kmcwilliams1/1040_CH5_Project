@@ -16,6 +16,7 @@ void Flight::addFlightUpdate(const string &newDepartureTime, const string &newDe
 
 
 void Flight::addCrewMember(int employeeID, Crew::EmployeeType type) {
+
     // First, check if the employee is already in the crew list
     for (const auto &crew: listOfCrewMembers) {
         for (const auto &pilot: crew.pilotList) {
@@ -62,7 +63,7 @@ void Flight::addCrewMember(const string &name, Crew::EmployeeType type) {
     }
 
     // Set the name of the crew member
-    newCrewMember->setName(name);
+    if (newCrewMember != nullptr) newCrewMember->setName(name);
 
     // Add the crew member to the appropriate list
     CrewList crewList;
@@ -77,40 +78,52 @@ void Flight::addCrewMember(const string &name, Crew::EmployeeType type) {
 
 void Flight::removeCrewMember(int employeeID) {
     for (auto &crewList: listOfCrewMembers) {
-        // Remove the crew member with the given employeeID from both lists
-        crewList.pilotList.erase(
-                remove_if(crewList.pilotList.begin(), crewList.pilotList.end(),
-                          [employeeID](const Pilot *pilot) {
-                              return pilot->getEmployeeID() == employeeID;
-                          }),
-                crewList.pilotList.end());
 
-        crewList.attendantList.erase(
-                remove_if(crewList.attendantList.begin(), crewList.attendantList.end(),
-                          [employeeID](const Attendant *attendant) {
-                              return attendant->getEmployeeID() == employeeID;
-                          }),
-                crewList.attendantList.end());
+        // For Pilots
+        for (auto it = crewList.pilotList.begin(); it != crewList.pilotList.end();) {
+            if ((*it)->getEmployeeID() == employeeID) {
+                it = crewList.pilotList.erase(it);
+            } else {
+                ++it;
+            }
+        }
+
+        // For Attendants
+        for (auto it = crewList.attendantList.begin(); it != crewList.attendantList.end();) {
+            if ((*it)->getEmployeeID() == employeeID) {
+                it = crewList.attendantList.erase(it);
+            } else {
+                ++it;
+            }
+        }
+
     }
 }
+
 
 list<CrewList> Flight::getCrewMembers() const {
     return listOfCrewMembers;
 }
 
 bool Flight::isCrewMemberInList(int employeeID) const {
+
     for (const auto &crewList: listOfCrewMembers) {
-        // Check if the crew member with the given employeeID is in either list
-        if (any_of(crewList.pilotList.begin(), crewList.pilotList.end(),
-                   [employeeID](const Pilot *pilot) { return pilot->getEmployeeID() == employeeID; }) ||
-            any_of(crewList.attendantList.begin(), crewList.attendantList.end(),
-                   [employeeID](const Attendant *attendant) { return attendant->getEmployeeID() == employeeID; })) {
-            return true;
+        for (const auto *pilot: crewList.pilotList) {
+            if (pilot->getEmployeeID() == employeeID) {
+                return true;
+            }
+        }
+
+        for (const auto *attendant: crewList.attendantList) {
+            if (attendant->getEmployeeID() == employeeID) {
+                return true;
+            }
         }
     }
 
     return false;
 }
+
 
 void Flight::clearCrewMembers() {
     for (auto &crewList: listOfCrewMembers) {
@@ -122,3 +135,101 @@ void Flight::clearCrewMembers() {
     listOfCrewMembers.clear();
 }
 
+
+void Flight::addMaintenanceRequest(float fuelLevel, bool engineInspected, float tirePressure, bool brakeCheck) {
+    MaintenanceRequests request{};
+    request.fuelLevel = fuelLevel;
+    request.engineInspected = engineInspected;
+    request.tirePressure = tirePressure;
+    request.brakeCheck = brakeCheck;
+
+    maintenanceRequests.push_back(request);
+}
+
+void Flight::removeMaintenanceRequest(int requestID) {
+    maintenanceRequests.erase(
+            remove_if(maintenanceRequests.begin(), maintenanceRequests.end(),
+                      [requestID](const MaintenanceRequests &request) { return request.requestID == requestID; }),
+            maintenanceRequests.end());
+}
+
+list<MaintenanceRequests> Flight::getMaintenanceRequests() const {
+    return maintenanceRequests;
+}
+
+bool Flight::isMaintenanceRequestInList(int requestID) const {
+    return any_of(maintenanceRequests.begin(), maintenanceRequests.end(),
+                  [requestID](const MaintenanceRequests &request) { return request.requestID == requestID; });
+}
+
+void Flight::clearMaintenanceRequests() {
+    maintenanceRequests.clear();
+}
+
+
+// Point 3: Pair
+void Flight::setDepartureAndArrivalCities(const string &departureCity, const string &arrivalCity) {
+    departureAndArrivalCities.emplace_back(departureCity, arrivalCity);
+}
+
+vector<pair<string, string>> Flight::getDepartureAndArrivalCities() const {
+    return departureAndArrivalCities;
+}
+
+// Point 4: Map
+void Flight::addFlightDetail(int detailID, const string &detailInfo) {
+    flightDetailsMap.insert({detailID, detailInfo});
+}
+
+void Flight::removeFlightDetail(int detailID) {
+    flightDetailsMap.erase(detailID);
+}
+
+map<int, string> Flight::getFlightDetails() const {
+    return flightDetailsMap;
+}
+
+// Point 5: Queue (Arriving Flights)
+void Flight::enqueueArrivingFlight(const Flight &arrivingFlight) {
+    checkInQueue.push(arrivingFlight);
+}
+
+Flight Flight::dequeueArrivingFlight() {
+    if (!checkInQueue.empty()) {
+        Flight frontFlight = checkInQueue.front();
+        checkInQueue.pop();
+        return frontFlight;
+    } else {
+        // Return an empty flight if the queue is empty
+        return {};
+    }
+}
+
+// Point 6: Deque (Departing Flights)
+void Flight::enqueueDepartingFlight(const Flight &departingFlight) {
+    bookingDeque.push_back(departingFlight);
+}
+
+Flight Flight::dequeueDepartingFlight() {
+    if (!bookingDeque.empty()) {
+        Flight backFlight = bookingDeque.back();
+        bookingDeque.pop_back();
+        return backFlight;
+    } else {
+        // Return an empty flight if the deque is empty
+        return {};
+    }
+}
+
+// Point 7: Set
+void Flight::addDestinationToSet(const string &destination) {
+    uniqueDestinations.insert(destination);
+}
+
+void Flight::removeDestinationFromSet(const string &destination) {
+    uniqueDestinations.erase(destination);
+}
+
+set<string> Flight::getUniqueDestinations() const {
+    return uniqueDestinations;
+}

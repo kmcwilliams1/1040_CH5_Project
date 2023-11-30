@@ -14,6 +14,6 @@ add_executable(1040_CH5_PracticeProject main.cpp
         ../Crew/Attendant/Attendant.h
         Collection.cpp
         Collection.h
-        ../Passengers/Passengers.h
-        ../Passengers/Passengers.cpp
+        ../Airport/Airport.h
+        ../Airport/Airport.cpp
 )

@@ -5,21 +5,23 @@
 
 #include "../Crew/Crew.h"
 #include "../Flight/Flight.h"
-#include "../Passengers/Passengers.h"
+#include "../Airport/Airport.h"
 
 class Collection {
 public:
-    vector<Passenger*> passengers;
+    vector<Airport*> airports;
     vector<Crew*> crew;
     vector<Flight*> flights;
 
-    void readPassengerProperties(const string &basicString);
+    void readAirportProperties(const string &basicString);
     void readCrewProperties(const string &basicString);
     void readFlightProperties(const string &basicString);
 
-    void writePassengerProperties(ostream& dataFile);
+    void writeAirportProperties(ostream& dataFile);
     void writeCrewProperties(ostream& dataFile);
     void writeFlightProperties(ostream& dataFile);
+
+
 
 
 };
