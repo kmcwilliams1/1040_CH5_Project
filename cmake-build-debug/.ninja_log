@@ -1,19 +1,12 @@
 # ninja log v5
 0	571	7229777996452197	CMakeFiles/1040_CH5_PracticeProject.dir/main.cpp.obj	de5a6c0fcd7201c2
-162	210	7229825618056789	1040_CH5_PracticeProject.exe	386ea442526d90a3
-7	174	7229825167828833	CMakeFiles/1040_CH5_PracticeProject.dir/Flight/Flight.cpp.obj	8db08567129e4be7
-2	162	7229825617601670	CMakeFiles/1040_CH5_PracticeProject.dir/Pilot/Pilot.cpp.obj	a4fd85d50891cc9e
-2	179	7229825167878836	CMakeFiles/1040_CH5_PracticeProject.dir/Airline/Airline.cpp.obj	8cd97350b84d8d2
-9	176	7229825167848839	CMakeFiles/1040_CH5_PracticeProject.dir/Passenger/Passenger.cpp.obj	3493dc651acc64ea
-5	235	7229825168448839	CMakeFiles/1040_CH5_PracticeProject.dir/Airport/Airport.cpp.obj	1e4802068466b74
-11	37	7229833722001134	CMakeFiles/1040_CH5_PracticeProject.dir/Crew/Attendant/Attendant.cpp.obj	c512879a965b284a
-9	168	7229833723321338	CMakeFiles/1040_CH5_PracticeProject.dir/Crew/Crew.cpp.obj	950be8a172b167c6
-7	169	7229833723331338	CMakeFiles/1040_CH5_PracticeProject.dir/Crew/Pilot/Pilot.cpp.obj	419805ae1dc1051a
-5	168	7229833989207945	CMakeFiles/1040_CH5_PracticeProject.dir/Flight/Flight.cpp.obj	8db08567129e4be7
-2	217	7229833989693039	CMakeFiles/1040_CH5_PracticeProject.dir/Airport/Airport.cpp.obj	1e4802068466b74
-217	266	7229833990163066	1040_CH5_PracticeProject.exe	ab6cb16281e13a5d
-7	164	7229839635167624	CMakeFiles/1040_CH5_PracticeProject.dir/Crew/Attendant/Attendant.cpp.obj	c512879a965b284a
-9	165	7229839635187633	CMakeFiles/1040_CH5_PracticeProject.dir/Crew/Pilot/Pilot.cpp.obj	419805ae1dc1051a
 5	168	7229839635217632	CMakeFiles/1040_CH5_PracticeProject.dir/Flight/Flight.cpp.obj	8db08567129e4be7
-2	221	7229839635742713	CMakeFiles/1040_CH5_PracticeProject.dir/Airport/Airport.cpp.obj	1e4802068466b74
 221	269	7229839636202729	1040_CH5_PracticeProject.exe	ab6cb16281e13a5d
+2	179	7229825167878836	CMakeFiles/1040_CH5_PracticeProject.dir/Airline/Airline.cpp.obj	8cd97350b84d8d2
+2	162	7229825617601670	CMakeFiles/1040_CH5_PracticeProject.dir/Pilot/Pilot.cpp.obj	a4fd85d50891cc9e
+9	176	7229825167848839	CMakeFiles/1040_CH5_PracticeProject.dir/Passenger/Passenger.cpp.obj	3493dc651acc64ea
+2	221	7229839635742713	CMakeFiles/1040_CH5_PracticeProject.dir/Airport/Airport.cpp.obj	1e4802068466b74
+7	164	7229839635167624	CMakeFiles/1040_CH5_PracticeProject.dir/Crew/Attendant/Attendant.cpp.obj	c512879a965b284a
+9	168	7229833723321338	CMakeFiles/1040_CH5_PracticeProject.dir/Crew/Crew.cpp.obj	950be8a172b167c6
+9	165	7229839635187633	CMakeFiles/1040_CH5_PracticeProject.dir/Crew/Pilot/Pilot.cpp.obj	419805ae1dc1051a
+1	62	7230096682289395	build.ninja	3711478e91565e3b

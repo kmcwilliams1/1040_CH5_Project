@@ -14,3 +14,7 @@ void Pilot::setEmployeeID() {
     int random_number = distribution(generator);
     pilotID = random_number;
 }
+
+Pilot::Pilot() {
+
+}

@@ -13,3 +13,5 @@ void Attendant::setEmployeeID() {
     int random_number = distribution(generator);
     attendantID = random_number;
 }
+
+Attendant::Attendant() = default;

@@ -9,6 +9,7 @@
 #include <set>
 #include <utility>
 #include <string>
+
 using namespace std;
 
 
@@ -17,6 +18,11 @@ struct FlightAssignments {
 };
 
 class Crew {
+public:
+    Crew();
+    ~Crew() = default;
+
+
 private:// 7 points of study from Chapter 5
     // Point 1: List
     list<string> listOfAssignedFlights;
@@ -38,12 +44,20 @@ private:// 7 points of study from Chapter 5
 
     // Point 7: Set
     set<string> uniqueDestinations;
+
+
 public:
     enum class EmployeeType {
         Pilot,
         Attendant
-    }
+    };
     string name;
+
+    virtual int getEmployeeID() const;
+
+    virtual void setEmployeeID();
+
+    void setName(const string &basicString);
 };
 
 

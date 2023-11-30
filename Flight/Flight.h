@@ -61,13 +61,19 @@ private: // Variables
 
 public:// Methods
 
+    // Point 1:  List
+    void addCrewMember(const string& name, Crew::EmployeeType type);
+    void removeCrewMember(int employeeID);
+    list<CrewList> getCrewMembers() const;
+    bool isCrewMemberInList(int employeeID) const;
+    void clearCrewMembers();
 
 
     // Point 2: Linked List
     void addFlightUpdate(const string &newDepartureTime, const string &newDepartureGate);
 
 
-
+    void addCrewMember(int employeeID, Crew::EmployeeType type);
 };
 
 #endif //INC_1040_CH5_PRACTICEPROJECT_FLIGHT_H

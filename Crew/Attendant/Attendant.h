@@ -5,10 +5,10 @@
 
 #include "../Pilot/Pilot.h"
 
-class Attendant : public Pilot  {
+class Attendant : public Crew  {
 
     private:
-        int attendantID{};
+    int attendantID{};
         enum class ServicePosition{
             frontOfPlane = 1,
             middleOfPlane,
@@ -17,9 +17,11 @@ class Attendant : public Pilot  {
         ServicePosition servicePosition{};
 
 public:
-    void setEmployeeID();
+    void setEmployeeID() override;
 
-    int getEmployeeID() const;
+    int getEmployeeID() const override;
+
+    Attendant();
 };
 
 

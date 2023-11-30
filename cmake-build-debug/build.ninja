@@ -55,12 +55,6 @@ build CMakeFiles/1040_CH5_PracticeProject.dir/main.cpp.obj: CXX_COMPILER__1040_C
   OBJECT_DIR = CMakeFiles\1040_CH5_PracticeProject.dir
   OBJECT_FILE_DIR = CMakeFiles\1040_CH5_PracticeProject.dir
 
-build CMakeFiles/1040_CH5_PracticeProject.dir/Airport/Airport.cpp.obj: CXX_COMPILER__1040_CH5_PracticeProject_unscanned_Debug C$:/Users/Other/CLionProjects/1040_CH5_PracticeProject/Airport/Airport.cpp || cmake_object_order_depends_target_1040_CH5_PracticeProject
-  DEP_FILE = CMakeFiles\1040_CH5_PracticeProject.dir\Airport\Airport.cpp.obj.d
-  FLAGS = -g -std=gnu++11 -fdiagnostics-color=always
-  OBJECT_DIR = CMakeFiles\1040_CH5_PracticeProject.dir
-  OBJECT_FILE_DIR = CMakeFiles\1040_CH5_PracticeProject.dir\Airport
-
 build CMakeFiles/1040_CH5_PracticeProject.dir/Flight/Flight.cpp.obj: CXX_COMPILER__1040_CH5_PracticeProject_unscanned_Debug C$:/Users/Other/CLionProjects/1040_CH5_PracticeProject/Flight/Flight.cpp || cmake_object_order_depends_target_1040_CH5_PracticeProject
   DEP_FILE = CMakeFiles\1040_CH5_PracticeProject.dir\Flight\Flight.cpp.obj.d
   FLAGS = -g -std=gnu++11 -fdiagnostics-color=always
@@ -85,6 +79,18 @@ build CMakeFiles/1040_CH5_PracticeProject.dir/Crew/Attendant/Attendant.cpp.obj: 
   OBJECT_DIR = CMakeFiles\1040_CH5_PracticeProject.dir
   OBJECT_FILE_DIR = CMakeFiles\1040_CH5_PracticeProject.dir\Crew\Attendant
 
+build CMakeFiles/1040_CH5_PracticeProject.dir/Collection.cpp.obj: CXX_COMPILER__1040_CH5_PracticeProject_unscanned_Debug C$:/Users/Other/CLionProjects/1040_CH5_PracticeProject/Collection.cpp || cmake_object_order_depends_target_1040_CH5_PracticeProject
+  DEP_FILE = CMakeFiles\1040_CH5_PracticeProject.dir\Collection.cpp.obj.d
+  FLAGS = -g -std=gnu++11 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\1040_CH5_PracticeProject.dir
+  OBJECT_FILE_DIR = CMakeFiles\1040_CH5_PracticeProject.dir
+
+build CMakeFiles/1040_CH5_PracticeProject.dir/Passengers/Passengers.cpp.obj: CXX_COMPILER__1040_CH5_PracticeProject_unscanned_Debug C$:/Users/Other/CLionProjects/1040_CH5_PracticeProject/Passengers/Passengers.cpp || cmake_object_order_depends_target_1040_CH5_PracticeProject
+  DEP_FILE = CMakeFiles\1040_CH5_PracticeProject.dir\Passengers\Passengers.cpp.obj.d
+  FLAGS = -g -std=gnu++11 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\1040_CH5_PracticeProject.dir
+  OBJECT_FILE_DIR = CMakeFiles\1040_CH5_PracticeProject.dir\Passengers
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target 1040_CH5_PracticeProject
@@ -93,7 +99,7 @@ build CMakeFiles/1040_CH5_PracticeProject.dir/Crew/Attendant/Attendant.cpp.obj: 
 #############################################
 # Link the executable 1040_CH5_PracticeProject.exe
 
-build 1040_CH5_PracticeProject.exe: CXX_EXECUTABLE_LINKER__1040_CH5_PracticeProject_Debug CMakeFiles/1040_CH5_PracticeProject.dir/main.cpp.obj CMakeFiles/1040_CH5_PracticeProject.dir/Airport/Airport.cpp.obj CMakeFiles/1040_CH5_PracticeProject.dir/Flight/Flight.cpp.obj CMakeFiles/1040_CH5_PracticeProject.dir/Crew/Pilot/Pilot.cpp.obj CMakeFiles/1040_CH5_PracticeProject.dir/Crew/Crew.cpp.obj CMakeFiles/1040_CH5_PracticeProject.dir/Crew/Attendant/Attendant.cpp.obj
+build 1040_CH5_PracticeProject.exe: CXX_EXECUTABLE_LINKER__1040_CH5_PracticeProject_Debug CMakeFiles/1040_CH5_PracticeProject.dir/main.cpp.obj CMakeFiles/1040_CH5_PracticeProject.dir/Flight/Flight.cpp.obj CMakeFiles/1040_CH5_PracticeProject.dir/Crew/Pilot/Pilot.cpp.obj CMakeFiles/1040_CH5_PracticeProject.dir/Crew/Crew.cpp.obj CMakeFiles/1040_CH5_PracticeProject.dir/Crew/Attendant/Attendant.cpp.obj CMakeFiles/1040_CH5_PracticeProject.dir/Collection.cpp.obj CMakeFiles/1040_CH5_PracticeProject.dir/Passengers/Passengers.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\1040_CH5_PracticeProject.dir

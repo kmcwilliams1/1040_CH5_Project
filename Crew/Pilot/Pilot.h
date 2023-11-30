@@ -7,7 +7,8 @@
 using namespace std;
 
 
-class Pilot : Crew {
+class Pilot : public Crew {
+
 
 private:
     int pilotID{};
@@ -21,9 +22,11 @@ private:
 
 public:// Methods
 
-    int getEmployeeID() const;
+     int getEmployeeID() const override;
 
-    void setEmployeeID();
+     void setEmployeeID() override;
+
+    Pilot();
 };
 
 
