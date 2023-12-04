@@ -192,3 +192,48 @@ bool Airport::isDestinationInSet(const string& destination) const {
 void Airport::clearUniqueDestinations() {
     uniqueDestinations.clear();
 }
+
+
+
+
+
+//Accesssor Methods
+string Airport::getAirportName() const {
+    return airportName;
+}
+
+void Airport::setAirportName(string &newName) {
+        airportName = newName;
+}
+
+string Airport::getGate() const {
+    return gate;
+}
+
+void Airport::setGate(string &newGate) {
+    gate = newGate;
+}
+
+int Airport::getNumberOfGates() const {
+    return numberOfGates;
+}
+
+void Airport::setNumberOfGates(int newNumberOfGates) {
+    numberOfGates = newNumberOfGates;
+}
+
+vector<Flight *> Airport::getFlights() const {
+    return flights;
+}
+
+void Airport::setFlights(const vector<Flight*>& newFlights) {
+    flights = newFlights;
+}
+
+void Airport::setCallSign(string &basicString) {
+    callSign = basicString;
+}
+
+string Airport::getCallSign() const {
+    return callSign;
+}

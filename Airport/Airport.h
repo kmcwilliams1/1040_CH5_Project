@@ -37,12 +37,13 @@ private:
 
 private:
     // Additional Variables
+    string airportName;
     string gate;
+    string callSign;
     int numberOfGates;
     vector<Flight*> flights;
 
-public:
-    // Methods
+public: //7 points of study methods
 
     // Point 1: List
     void addFlightToList(const Flight& flight);
@@ -92,6 +93,23 @@ public:
     set<string> getUniqueDestinations() const;
     bool isDestinationInSet(const string& destination) const;
     void clearUniqueDestinations();
+
+
+    public: //Accessor Mehthods
+    string getAirportName() const;
+    void setAirportName(string &newName);
+
+    string getGate() const;
+    void setGate(string &newGate);
+
+    int getNumberOfGates() const;
+    void  setNumberOfGates(int newNumberOfGates);
+
+    vector<Flight*> getFlights() const;
+    void setFlights(const vector<Flight*>& newFlights);
+
+    string getCallSign() const;
+    void setCallSign(string &basicString);
 };
 
 #endif //INC_1040_CH5_PRACTICEPROJECT_AIRPORT_H

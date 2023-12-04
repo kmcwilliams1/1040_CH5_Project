@@ -1,41 +1,94 @@
 #include <iostream>
 #include <fstream>
 #include "Collection.h"
+#include <ctime>
+#include <sstream>
+
 using namespace std;
 
+
+struct Time {
+    vector<string> daysOfTheWeek = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+
+    string getToday() {
+        time_t currentTime;
+        struct tm *localTime;
+
+        time(&currentTime);                   // Get the current time
+        localTime = localtime(&currentTime);  // Convert the current time to the local time
+
+        return daysOfTheWeek[localTime->tm_wday];
+    }
+
+
+    int getDayIndex(const string &day) {
+        for (int i = 0; i < daysOfTheWeek.size(); ++i) {
+            if (daysOfTheWeek[i] == day) {
+                return i;
+            }
+        }
+        return -1; // Not found
+    }
+};
 
 
 int main() {
 
     auto *collection = new Collection();
+    Time calendar;
     ifstream fin("AirportData.dat");
+
+    if (!fin.is_open()) {
+        cerr << "Failed to open AirportData.dat" << endl;
+        return 1;
+    } else {
+        cout << "AirportData is open" << endl;
+    }
+
 
     string readingLine;
     string role;
     char option;
-    string driverSearchWord = "Crew";
-    string passengerSearchWord = "Passenger";
-    string rideSearchWord = "Flight";
+    string crewSearchWord = "Crew";
+    string airportSearchWord = "Passenger";
+    string flightSearchWord = "Flight";
 
-    while (fin >> readingLine) {
-        role = readingLine.substr(0, readingLine.find(','));
+    cout << "\n\n";
+    while (getline(fin, readingLine)) {
 
-        {
-            if (role == driverSearchWord) {
+        cout << "Reading line: " << readingLine << endl;
 
-                collection->readAirportProperties(readingLine);
 
-            } else if (role == rideSearchWord) {
+        if (!readingLine.empty() && readingLine[0] == '#') {
+            cout << "This line is going to be skipped" << endl;
+            cout << "\n";
+            continue;
 
-                collection->readCrewProperties(readingLine);
-
-            } else if (role == passengerSearchWord) {
-
-                collection->readFlightProperties(readingLine);
-
-            }
         }
-    };
+
+        istringstream lineStream(readingLine);
+        getline(lineStream, role, ',');
+        cout << "Role: " << role << endl;
+
+        if (role == airportSearchWord) {
+            cout << "airportSearchWord is being used" << endl;
+            collection->readAirportProperties(readingLine);
+        } else if (role == crewSearchWord) {
+            collection->readCrewProperties(readingLine);
+        } else if (role == flightSearchWord) {
+            collection->readFlightProperties(readingLine);
+        }
+        cout << "\n";
+    }
+
+
+
+
+
+    cout << "Airport size: " << collection->airports.size() << endl;
+    cout << "Flight size: " << collection->flights.size() << endl;
+    cout << "Crew size: " << collection->crew.size() << endl;
+
 
     fin.clear();
     fin.seekg(0, ios::beg);
@@ -51,10 +104,11 @@ int main() {
                 "                            / \\  (_)___/| (_)_ __   ___  ___                   \n"
                 "                           / _ \\ | | '__| | | '_ \\ / _ \\/ __|                  \n"
                 "                          / ___ \\| | |  | | | | | |  __/\\__ \\                  \n"
-                "                         /_/   \\_\\_|_|  |_|_|_| |_|\\___||___/          "<< endl;
+                "                         /_/   \\_\\_|_|  |_|_|_| |_|\\___||___/          " << endl;
 
         cout << "| ********************************* Main Menu *************************************** |" << endl;
-        cout << "| ** A.    View Flights   ** |" << "| ** B.   Manage Flights  ** |" << "| ** C.     Exit       ** |" << endl; ;
+        cout << "| ** A.    View Flights   ** |" << "| ** B.   Manage Flights  ** |" << "| ** C.     Exit       ** |"
+             << endl;;
         cout << "| *********************************************************************************** |" << endl;
 
 
@@ -63,16 +117,36 @@ int main() {
         switch (option) {
             case 'A':
             case 'a': // View Flights
-                cout << "For which day would you like to view? " << endl;
+            {
+                cout << "Which airport would you like to view " << endl;
+                for (auto *currentAirport: collection->airports) {
+                    cout << currentAirport->getAirportName() << endl;
+                }
 
+                cout << "Which day would you like to view? " << endl;
+                string today = calendar.getToday();
+                cout << "Today (" << today << "), ";
 
+                // Display the next 6 days
+                for (int i = 1; i <= 6; ++i) {
+                    int nextDayIndex = (calendar.getDayIndex(today) + i) % 7;
+                    cout << calendar.daysOfTheWeek[nextDayIndex] << ((i < 6) ? ", " : "\n");
+                }
 
+            }
                 break;
 
 
             case 'B':
             case 'b': // Manage Flights
 
+
+                cout << "Which airport would you like to manage " << endl;
+                for (auto *currentAirport: collection->airports) {
+                    cout << currentAirport->getAirportName() << endl;
+                }
+                cout << "Which day would you like to manage? " << endl;
+                break;
 
 
             case 'c':
@@ -100,9 +174,6 @@ int main() {
                     collection->writeFlightProperties(fout);
                 }
                 fout << endl;
-
-
-
 
 
                 delete collection;

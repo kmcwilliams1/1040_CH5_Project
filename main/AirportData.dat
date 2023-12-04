@@ -1,0 +1,14 @@
+#Airport Data - airportName,callSign,numberOfGates,listOfFlights,dynamicMaintenanceUpdates,flightPair,flightDetails,arrivingFlights,departingFlights,uniqueDestinations
+John F. Kennedy International Airport,JFK,10,2,ABC123,DEF456,2,1040,1041,3(LAX,SFO),(LAX, DAL),(LAX,PHO),(ABC123:Details1, DEF456:Details2),3,GHI789,JKL901,MNO234,2,UVW5456,XYZ789,DEF456,LAX,SFO,DAL,PHO,
+Los Angeles International Airport,LAX,15,2,GHI789,JKL901,1,2050,(GHI789:Details3),2,MNO234,PQR567,1,XYZ789,LAX,SFO,
+San Francisco International Airport,SFO,12,2,XYZ789,PQR567,2,3070,3080,2(LAX,SFO),(XYZ789:Details4, PQR567:Details5),1,JKL901,SFO,
+
+
+#Flight Data - flightNumber,gate,passengerCount,seatCount,isFueled,departureTime,landingTime,listOfCrewMembers,dynamicFlightUpdates,maintenanceRequests,departureAndArrivalCities,flightDetailsMap,checkInQueue,bookingDeque,uniqueDestinations
+ABC123,A1,150,200,true,1641578400,1641592800,3,12345,54321,13579,2,(1641580000, GateChange: B3), (1641586000, Delayed: 30 minutes),1,(Fuel: 80.5, Checked Engine: true, Tire Pressure: 32.5, Brake Check: false),2,(LAX, SFO), (SFO, JFK),2,1:Details1, 2:Details2,3,UVW5456, XYZ789, DEF456,4,LAX, SFO, JFK, DAL
+
+
+
+#Crew Data - CrewType,name,employeeID,listOfAssignedFlights,flightAssignments,assignedFlightPair,assignedFlightsMap,updateQueue,updateDeque,uniqueDestinations
+Pilot,John Doe,1001,2,ABC123, DEF456,2,(FlightUpdate: ABC123, NewDepartureTime: 1641579000), (MaintenanceRequest: 1, FuelLevel: 75.2, EngineInspected: true),2,(1, ABC123), (2, DEF456),2,(FlightUpdate: DEF456, NewDepartureTime: 1641605000), (MaintenanceRequest: 2, FuelLevel: 85.0, EngineInspected: false),3,LAX, SFO, JFK
+Attendant,Jane Smith,2001,3,PQR567, MNO234, UVW5456,3,(FlightUpdate: PQR567, NewDepartureTime: 1641586000), (MaintenanceRequest: 3, TirePressure: 30.0, BrakeCheck: true),2,(3, PQR567), (4, MNO234),2,(FlightUpdate: UVW5456, NewDepartureTime: 1641593000), (MaintenanceRequest: 4, TirePressure: 28.5, BrakeCheck: false),3,LAX, SFO, MIA

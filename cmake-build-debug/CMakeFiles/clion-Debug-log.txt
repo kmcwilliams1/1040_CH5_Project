@@ -1,1 +1,0 @@
-CMakeLists.txt not found in C:\Users\Other\CLionProjects\1040_CH5_PracticeProject Select CMakeLists.txt
