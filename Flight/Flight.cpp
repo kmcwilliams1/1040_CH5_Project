@@ -7,7 +7,7 @@ using namespace std;
 
 void Flight::addFlightUpdate(const string &newDepartureTime, const string &newDepartureGate) {
     FlightUpdate update;
-    update.flightID = this->flightNumber;
+    update.flightNumber = this->flightNumber;
     update.newDepartureTime = newDepartureTime;
     update.newDepartureGate = newDepartureGate;
 
@@ -136,14 +136,30 @@ void Flight::clearCrewMembers() {
 }
 
 
-void Flight::addMaintenanceRequest(float fuelLevel, bool engineInspected, float tirePressure, bool brakeCheck) {
-    MaintenanceRequests request{};
-    request.fuelLevel = fuelLevel;
-    request.engineInspected = engineInspected;
-    request.tirePressure = tirePressure;
-    request.brakeCheck = brakeCheck;
+void Flight::addMaintenanceRequest() {
 
-    maintenanceRequests.push_back(request);
+    char option = 'y';
+    string request;
+
+    while (option != 'n' || option != 'N') {
+        cout << "Describe your maintenance request: ";
+        getline(cin, request);
+        cout << endl;
+
+        //TODO: fix
+        //descriptionOfRequests.push_back(request);
+
+
+
+
+        cout << "Add another request? (Y/N) ";
+        cin >> option;
+        cout << endl;
+        if (option == 'n' || option == 'N')break;
+    }
+
+
+   // maintenanceRequests.push_back(request);
 }
 
 void Flight::removeMaintenanceRequest(int requestID) {

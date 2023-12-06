@@ -13,8 +13,9 @@ public:
     vector<Crew*> crew;
     vector<Flight*> flights;
 
-    void readAirportProperties(const string &basicString);
-    void readCrewProperties(const string &basicString);
+
+    void readAirportProperties(const string &basicString, Airport *airport);
+    void readCrewProperties(const string &basicString, Crew *thisCrew);
     void readFlightProperties(const string &basicString);
 
     void writeAirportProperties(ostream& dataFile);

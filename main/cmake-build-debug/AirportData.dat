@@ -1,12 +1,10 @@
-#Airport Data - airportName,callSign,numberOfGates,listOfFlights,dynamicMaintenanceUpdates,flightPair,flightDetails,arrivingFlights,departingFlights,uniqueDestinations
-John F. Kennedy International Airport,JFK,10,2,ABC123,DEF456,2,1040,1041,3(LAX,SFO),(LAX, DAL),(LAX,PHO),(ABC123:Details1, DEF456:Details2),3,GHI789,JKL901,MNO234,2,UVW5456,XYZ789,DEF456,LAX,SFO,DAL,PHO,
-Los Angeles International Airport,LAX,15,2,GHI789,JKL901,1,2050,(GHI789:Details3),2,MNO234,PQR567,1,XYZ789,LAX,SFO,
-San Francisco International Airport,SFO,12,2,XYZ789,PQR567,2,3070,3080,2(LAX,SFO),(XYZ789:Details4, PQR567:Details5),1,JKL901,SFO,
+#Airport Data - airportName,callSign,numberOfGates,listOfFlights,dynamicMaintenanceUpdates,flightPair,uniqueDestinations
+Los Angeles International Airport,LAX,10,7,ABC123,DEF456,GHI789,JKL901,MNO234,UVW5456,XYZ789,3,(LAX,SFO),(LAX,DAL),(LAX,PHO),3,SFO,DAL,PHO,
+San Francisco International Airport,SFO,12,4,TYH795,POW897,FRT431,MYT759,2,(SFO,JFK),(SFO,HOU),2,JFK,HOU,
 
 
 #Flight Data - flightNumber,gate,passengerCount,seatCount,isFueled,departureTime,landingTime,listOfCrewMembers,dynamicFlightUpdates,maintenanceRequests,departureAndArrivalCities,flightDetailsMap,checkInQueue,bookingDeque,uniqueDestinations
-ABC123,A1,150,200,true,1641578400,1641592800,3,12345,54321,13579,2,(1641580000, GateChange: B3), (1641586000, Delayed: 30 minutes),1,(Fuel: 80.5, Checked Engine: true, Tire Pressure: 32.5, Brake Check: false),2,(LAX, SFO), (SFO, JFK),2,1:Details1, 2:Details2,3,UVW5456, XYZ789, DEF456,4,LAX, SFO, JFK, DAL
-
+ABC123,A1,150,200,true,1641578400,1641592800,3,12345,54321,13579,2,(1641580000, GateChange: B3), (1641586000, Delayed: 30 minutes),1,(No Trouble),2,(LAX, SFO), (SFO, JFK),2,1:Details1, 2:Details2,3,UVW5456, XYZ789, DEF456,4,LAX, SFO, JFK, DAL
 
 
 #Crew Data - CrewType,name,employeeID,listOfAssignedFlights,flightAssignments,assignedFlightPair,assignedFlightsMap,updateQueue,updateDeque,uniqueDestinations

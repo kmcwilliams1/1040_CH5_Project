@@ -18,44 +18,73 @@ void Collection::readFlightProperties(const string &basicString) {
 
 }
 
-void Collection::readCrewProperties(const string &basicString) {
+void Collection::readCrewProperties(const string &basicString, Crew *thisCrew) {
 
 }
 
-void Collection::readAirportProperties(const string &basicString) {
+void Collection::readAirportProperties(const string &basicString, Airport *airport) {
+
     istringstream dataStream(basicString);
     string temp;
     int counter;
-    auto *airport = new Airport;
 
 
     getline(dataStream, temp, ',');
     {
         airport->setAirportName(temp);
-        cout << "Airport name " << airport->getAirportName() << endl;
     };
     getline(dataStream, temp, ',');
     {
         airport->setCallSign(temp);
-        cout << "Airport call sign " << airport->getCallSign() << endl;
 
     }
     getline(dataStream, temp, ',');
     {
         airport->setNumberOfGates(stoi(temp));
-        cout << "Num of gates: "<< airport->getNumberOfGates() << endl;
     }
     getline(dataStream, temp, ',');
     {
         counter = stoi(temp);
     }
-    for(int i = 0 ; i < counter ; i++){
+    for (int i = 0; i < counter; i++) {
         getline(dataStream, temp, ',');
         {
-            cout << "Adding flight number " << temp << " to list" << endl;
-            airport->addFlightToList(temp);
+            airport->setFlightIDs(temp);
         }
     }
+    getline(dataStream, temp, ',');
+    {
+        counter = stoi(temp);
+    }
+
+    for (int i = 0; i < counter; i++) {
+
+        string arrivalCity, departureCity;
+        getline(dataStream, temp, ',');
+        {
+            size_t openParenPos = temp.find('(');
+            departureCity = temp.substr(openParenPos + 1, temp.length());
+
+        }
+
+        getline(dataStream, temp, ',');
+        {
+            size_t closeParenPos = temp.find(')');
+            arrivalCity = temp.substr(0, closeParenPos);
+        }
+        airport->setFlightPair(departureCity, arrivalCity);
+
+    }
+    getline(dataStream, temp, ',');
+    {
+        counter = stoi(temp);
+    }
+    for (int i = 0; i < counter; i++) {
+        getline(dataStream, temp, ',');
+        {
+            airport->addToUniqueDestinations(temp);
+        }
 
 
+    }
 }

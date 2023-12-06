@@ -34,6 +34,11 @@ struct Time {
 
 int main() {
 
+    auto *airport = new Airport();
+    auto *crew = new Crew();
+    auto *flight = new Flight();
+
+
     auto *collection = new Collection();
     Time calendar;
     ifstream fin("AirportData.dat");
@@ -41,8 +46,6 @@ int main() {
     if (!fin.is_open()) {
         cerr << "Failed to open AirportData.dat" << endl;
         return 1;
-    } else {
-        cout << "AirportData is open" << endl;
     }
 
 
@@ -60,7 +63,7 @@ int main() {
 
         cout << "Reading line: " << readingLine << endl;
 
-        if (!readingLine.empty() && readingLine[0] == '#') {
+        if (readingLine.empty() || readingLine[0] == '#') {
             lineStream >> role;
             cout << "Role: " << role << endl;
             cout << "\n";
@@ -74,10 +77,10 @@ int main() {
         cout << "Role: " << role << endl;
 
         if (lastRole == airportSearchWord) {
-            cout << "airportSearchWord is being used" << endl << endl << endl;
-            collection->readAirportProperties(readingLine);
+            collection->readAirportProperties(readingLine, airport);
+            collection->airports.push_back(airport);
         } else if (lastRole == crewSearchWord) {
-            collection->readCrewProperties(readingLine);
+            collection->readCrewProperties(readingLine, crew);
         } else if (lastRole == flightSearchWord) {
             collection->readFlightProperties(readingLine);
         }
@@ -86,13 +89,14 @@ int main() {
     }
 
 
-
-
-
-
     cout << "Airport size: " << collection->airports.size() << endl;
     cout << "Flight size: " << collection->flights.size() << endl;
     cout << "Crew size: " << collection->crew.size() << endl;
+
+
+
+//    airport->enqueueArrivingFlight();
+//    airport->pushDepartingFlightBack();
 
 
     fin.clear();

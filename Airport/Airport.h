@@ -17,14 +17,8 @@ private:
     // Point 1: List
     list<Flight> listOfFlights;
 
-    // Point 2: Linked List
-    list<MaintenanceRequests> dynamicMaintenanceUpdates;
-
     // Point 3: Pair
     pair<string, string> flightPair;
-
-    // Point 4: Map
-    map<int, string> flightDetailsMap;
 
     // Point 5: Queue (Arriving Flights)
     queue<Flight> arrivingFlights;
@@ -42,6 +36,7 @@ private:
     string callSign;
     int numberOfGates;
     vector<Flight*> flights;
+    vector<string> flightIDs;
 
 public: //7 points of study methods
 
@@ -50,25 +45,12 @@ public: //7 points of study methods
     void removeFlightFromList(const string& flightNumber);
     list<Flight> getListOfFlights() const;
     bool isFlightInList(const string& flightNumber) const;
-    void clearListOfFlights();
 
-    // Point 2: Linked List
-    void addMaintenanceUpdate(const MaintenanceRequests& maintenanceUpdate);
-    void removeMaintenanceRequest(int requestID);
-    list<MaintenanceRequests> getMaintenanceUpdates() const;
-    bool isMaintenanceRequestInList(int requestID) const;
-    void clearMaintenanceUpdates();
 
     // Point 3: Pair
     void setFlightPair(const string& departureCity, const string& arrivalCity);
     pair<string, string> getFlightPair() const;
 
-    // Point 4: Map
-    void addFlightDetails(int flightID, const string& details);
-    void removeFlightDetails(int flightID);
-    string getFlightDetails(int flightID) const;
-    bool isFlightDetailsInMap(int flightID) const;
-    void clearFlightDetailsMap();
 
     // Point 5: Queue (Arriving Flights)
     void enqueueArrivingFlight(const Flight& flight);
@@ -108,8 +90,13 @@ public: //7 points of study methods
     vector<Flight*> getFlights() const;
     void setFlights(const vector<Flight*>& newFlights);
 
+    string getFlightIDs() const;
+    void setFlightIDs(const string& flightIDs);
+
     string getCallSign() const;
     void setCallSign(string &basicString);
+
+    void clearListOfFlights();
 };
 
 #endif //INC_1040_CH5_PRACTICEPROJECT_AIRPORT_H

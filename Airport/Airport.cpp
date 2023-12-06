@@ -6,12 +6,12 @@
 void Airport::addFlightToList(const string& flightData) {
     size_t colonPos = flightData.find(':');
     if (colonPos != string::npos) {
-        string flightID = flightData.substr(0, colonPos);
+
+        cout << "Reading FlightID: " << flightData << endl;
         string details = flightData.substr(colonPos + 1);
 
         Flight newFlight;
-        newFlight.setFlightNumber(flightID);
-        // You may need to parse and set other properties of Flight based on the details string
+        newFlight.setFlightNumber(flightData);
 
         cout << "Hitting here " << details << endl;
         listOfFlights.push_back(newFlight);
@@ -41,31 +41,6 @@ void Airport::clearListOfFlights() {
     listOfFlights.clear();
 }
 
-// Point 2: Linked List
-void Airport::addMaintenanceUpdate(const MaintenanceRequests &maintenanceUpdate) {
-    dynamicMaintenanceUpdates.push_back(maintenanceUpdate);
-}
-
-void Airport::removeMaintenanceRequest(int requestID) {
-    dynamicMaintenanceUpdates.remove_if([requestID](const MaintenanceRequests &request) {
-        return true;
-    });
-}
-
-list<MaintenanceRequests> Airport::getMaintenanceUpdates() const {
-    return dynamicMaintenanceUpdates;
-}
-
-bool Airport::isMaintenanceRequestInList(int requestID) const {
-    return any_of(dynamicMaintenanceUpdates.begin(), dynamicMaintenanceUpdates.end(),
-                  [requestID](const MaintenanceRequests &request) {
-                      return true;
-                  });
-}
-
-void Airport::clearMaintenanceUpdates() {
-    dynamicMaintenanceUpdates.clear();
-}
 
 // Point 3: Pair
 void Airport::setFlightPair(const string &departureCity, const string &arrivalCity) {
@@ -76,32 +51,6 @@ pair<string, string> Airport::getFlightPair() const {
     return flightPair;
 }
 
-// Point 4: Map
-void Airport::addFlightDetails(int flightID, const string &details) {
-    flightDetailsMap[flightID] = details;
-}
-
-void Airport::removeFlightDetails(int flightID) {
-    flightDetailsMap.erase(flightID);
-}
-
-string Airport::getFlightDetails(int flightID) const {
-    auto it = flightDetailsMap.find(flightID);
-    if (it != flightDetailsMap.end()) {
-        return it->second;
-    } else {
-        // Return an empty string or handle the case when flightID is not found
-        return "";
-    }
-}
-
-bool Airport::isFlightDetailsInMap(int flightID) const {
-    return flightDetailsMap.find(flightID) != flightDetailsMap.end();
-}
-
-void Airport::clearFlightDetailsMap() {
-    flightDetailsMap.clear();
-}
 
 // Point 5: Queue (Arriving Flights)
 void Airport::enqueueArrivingFlight(const Flight &flight) {
@@ -247,4 +196,15 @@ void Airport::setCallSign(string &basicString) {
 
 string Airport::getCallSign() const {
     return callSign;
+}
+
+string Airport::getFlightIDs() const {
+    for(string currentFlightID : flightIDs) {
+        return currentFlightID;
+    };
+    return "";
+};
+
+void Airport::setFlightIDs(const string& newFlightID) {
+    flightIDs.push_back(newFlightID);
 }
