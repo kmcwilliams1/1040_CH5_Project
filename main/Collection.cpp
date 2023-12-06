@@ -25,7 +25,7 @@ void Collection::readCrewProperties(const string &basicString) {
 void Collection::readAirportProperties(const string &basicString) {
     istringstream dataStream(basicString);
     string temp;
-
+    int counter;
     auto *airport = new Airport;
 
 
@@ -43,6 +43,19 @@ void Collection::readAirportProperties(const string &basicString) {
     getline(dataStream, temp, ',');
     {
         airport->setNumberOfGates(stoi(temp));
-        cout << "Num of gates: "<< airport->getNumberOfGates();
+        cout << "Num of gates: "<< airport->getNumberOfGates() << endl;
     }
+    getline(dataStream, temp, ',');
+    {
+        counter = stoi(temp);
+    }
+    for(int i = 0 ; i < counter ; i++){
+        getline(dataStream, temp, ',');
+        {
+            cout << "Adding flight number " << temp << " to list" << endl;
+            airport->addFlightToList(temp);
+        }
+    }
+
+
 }

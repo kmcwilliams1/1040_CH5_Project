@@ -233,3 +233,7 @@ void Flight::removeDestinationFromSet(const string &destination) {
 set<string> Flight::getUniqueDestinations() const {
     return uniqueDestinations;
 }
+
+Flight::Flight() = default;
+
+Flight::~Flight() = default;

@@ -49,37 +49,42 @@ int main() {
     string readingLine;
     string role;
     char option;
-    string crewSearchWord = "Crew";
-    string airportSearchWord = "Passenger";
-    string flightSearchWord = "Flight";
-
+    string crewSearchWord = "#Crew";
+    string airportSearchWord = "#Airport";
+    string flightSearchWord = "#Flight";
+    string lastRole;
     cout << "\n\n";
+
     while (getline(fin, readingLine)) {
+        istringstream lineStream(readingLine);
 
         cout << "Reading line: " << readingLine << endl;
 
-
         if (!readingLine.empty() && readingLine[0] == '#') {
-            cout << "This line is going to be skipped" << endl;
+            lineStream >> role;
+            cout << "Role: " << role << endl;
             cout << "\n";
-            continue;
 
+            lastRole = role;
+
+            continue;
         }
 
-        istringstream lineStream(readingLine);
         getline(lineStream, role, ',');
         cout << "Role: " << role << endl;
 
-        if (role == airportSearchWord) {
-            cout << "airportSearchWord is being used" << endl;
+        if (lastRole == airportSearchWord) {
+            cout << "airportSearchWord is being used" << endl << endl << endl;
             collection->readAirportProperties(readingLine);
-        } else if (role == crewSearchWord) {
+        } else if (lastRole == crewSearchWord) {
             collection->readCrewProperties(readingLine);
-        } else if (role == flightSearchWord) {
+        } else if (lastRole == flightSearchWord) {
             collection->readFlightProperties(readingLine);
         }
+
         cout << "\n";
     }
+
 
 
 

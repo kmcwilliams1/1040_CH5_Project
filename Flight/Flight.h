@@ -36,6 +36,9 @@ struct CrewList {
 
 
 class Flight {
+public:
+    Flight();
+    ~Flight();
 
 private:// 7 points of study from Chapter 5
     // Point 1: List
@@ -64,11 +67,11 @@ private:// 7 points of study from Chapter 5
 private: // Variables
     string flightNumber;
     string gate;
-    int passengerCount;
-    int seatCount;
-    bool isFueled;
-    time_t departureTime;
-    time_t landingTime;
+    int passengerCount{};
+    int seatCount{};
+    bool isFueled{};
+    time_t departureTime{};
+    time_t landingTime{};
 
 
 public:// 7 points of study from Chapter 5 - Methods

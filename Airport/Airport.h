@@ -46,7 +46,7 @@ private:
 public: //7 points of study methods
 
     // Point 1: List
-    void addFlightToList(const Flight& flight);
+    void addFlightToList(const string& flightData);
     void removeFlightFromList(const string& flightNumber);
     list<Flight> getListOfFlights() const;
     bool isFlightInList(const string& flightNumber) const;

@@ -1,13 +1,24 @@
 #include "Airport.h"
 #include <algorithm>
+#include <iostream>
 
-// airport.cpp
 
-#include "Airport.h"
-#include <algorithm>
+void Airport::addFlightToList(const string& flightData) {
+    size_t colonPos = flightData.find(':');
+    if (colonPos != string::npos) {
+        string flightID = flightData.substr(0, colonPos);
+        string details = flightData.substr(colonPos + 1);
 
-void Airport::addFlightToList(const Flight &flight) {
-    listOfFlights.push_back(flight);
+        Flight newFlight;
+        newFlight.setFlightNumber(flightID);
+        // You may need to parse and set other properties of Flight based on the details string
+
+        cout << "Hitting here " << details << endl;
+        listOfFlights.push_back(newFlight);
+    } else {
+        // Handle invalid format or provide an error message
+        cout << "Invalid flight data format: " << flightData << endl;
+    }
 }
 
 void Airport::removeFlightFromList(const string &flightNumber) {
