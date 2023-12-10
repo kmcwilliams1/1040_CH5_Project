@@ -24,7 +24,6 @@ struct FlightUpdate {
 struct MaintenanceRequests {
     vector<string> descriptionOfRequests;
     int requestID;
-    string flightNumber;
 };
 
 struct CrewList {
@@ -44,8 +43,6 @@ private:// 7 points of study from Chapter 5
     list<CrewList> listOfCrewMembers;
 
     // Point 2: Linked List
-    list<FlightUpdate> dynamicFlightUpdates;
-    // Point 2: Linked List
     list<MaintenanceRequests> maintenanceRequests;
 
     // Point 3: Pair
@@ -54,11 +51,6 @@ private:// 7 points of study from Chapter 5
     // Point 4: Map
     map<int, string> flightDetailsMap;
 
-    // Point 5: Queue (Arriving Flights)
-    queue<Flight> checkInQueue;
-
-    // Point 6: Deque (Departing Flights)
-    deque<Flight> bookingDeque;
 
     // Point 7: Set
     set<string> uniqueDestinations;
@@ -70,13 +62,14 @@ private: // Variables
     int seatCount{};
     bool isFueled{};
     time_t departureTime{};
-    time_t landingTime{};
+    time_t arrivalTime{};
+    vector <int> crewIDs{};
 
 
 public:// 7 points of study from Chapter 5 - Methods
 
     // Point 1:  List
-    void addCrewMember(const string &name, Crew::EmployeeType type);
+    void addCrewMember(int employeeID, Crew::EmployeeType type);
 
     void removeCrewMember(int employeeID);
 
@@ -88,15 +81,11 @@ public:// 7 points of study from Chapter 5 - Methods
 
 
     // Point 2: Linked List
-    void addFlightUpdate(const string &newDepartureTime, const string &newDepartureGate);
-
     void addMaintenanceRequest();
 
     void removeMaintenanceRequest(int requestID);
 
     list<MaintenanceRequests> getMaintenanceRequests() const;
-
-    bool isMaintenanceRequestInList(int requestID) const;
 
     void clearMaintenanceRequests();
 
@@ -107,6 +96,7 @@ public:// 7 points of study from Chapter 5 - Methods
     vector<pair<string, string>> getDepartureAndArrivalCities() const;
 
 
+
     // Point 4: Map
     void addFlightDetail(int detailID, const string &detailInfo);
 
@@ -114,17 +104,6 @@ public:// 7 points of study from Chapter 5 - Methods
 
     map<int, string> getFlightDetails() const;
 
-
-    // Point 5: Queue (Arriving Flights)
-    void enqueueArrivingFlight(const Flight &arrivingFlight);
-
-    Flight dequeueArrivingFlight();
-
-
-    // Point 6: Deque (Departing Flights)
-    void enqueueDepartingFlight(const Flight &departingFlight);
-
-    Flight dequeueDepartingFlight();
 
 
     // Point 7: Set
@@ -136,7 +115,23 @@ public:// 7 points of study from Chapter 5 - Methods
 
 
 public:
-    void addCrewMember(int employeeID, Crew::EmployeeType type);
+
+
+    //Getter and Setter for crewIDs
+    vector<int> getCrewIDs() const;
+
+    void setCrewIDs(int crewID);
+
+    //Getter and Setter for departureTime
+    string getDepartureTime() const;
+
+    void setDepartureTime(const string &time);
+
+    //Getter and Setter for arrivalTime
+    string getArrivalTime() const;
+
+    void setArrivalTime(time_t &time);
+
 
     // Getter and Setter for flightNumber
     const string &getFlightNumber() const {
@@ -183,7 +178,9 @@ public:
         isFueled = newIsFueled;
     }
 
+    void addCrewMember(const string &name, Crew::EmployeeType type);
 
+    void pushMaintenanceRequest(int id, const vector<string> &requestDescriptions);
 };
 
 #endif //INC_1040_CH5_PRACTICEPROJECT_FLIGHT_H

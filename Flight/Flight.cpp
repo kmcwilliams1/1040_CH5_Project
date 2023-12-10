@@ -1,18 +1,10 @@
 #include "Flight.h"
 #include <iostream>
 #include <algorithm>
+#include <ctime>
+#include <limits>
 
 using namespace std;
-
-
-void Flight::addFlightUpdate(const string &newDepartureTime, const string &newDepartureGate) {
-    FlightUpdate update;
-    update.flightNumber = this->flightNumber;
-    update.newDepartureTime = newDepartureTime;
-    update.newDepartureGate = newDepartureGate;
-
-    dynamicFlightUpdates.push_back(update);
-}
 
 
 void Flight::addCrewMember(int employeeID, Crew::EmployeeType type) {
@@ -138,28 +130,34 @@ void Flight::clearCrewMembers() {
 
 void Flight::addMaintenanceRequest() {
 
+
     char option = 'y';
     string request;
 
     while (option != 'n' || option != 'N') {
+        MaintenanceRequests newRequest;
         cout << "Describe your maintenance request: ";
         getline(cin, request);
         cout << endl;
-
-        //TODO: fix
-        //descriptionOfRequests.push_back(request);
-
-
-
-
+        newRequest.descriptionOfRequests.push_back(request);
+        newRequest.requestID = rand() % 10000;
         cout << "Add another request? (Y/N) ";
         cin >> option;
         cout << endl;
+        maintenanceRequests.push_back(newRequest);
+
         if (option == 'n' || option == 'N')break;
     }
 
 
-   // maintenanceRequests.push_back(request);
+}
+
+void Flight::pushMaintenanceRequest(int id, const vector<string> &requestDescriptions) {
+    MaintenanceRequests newRequest;
+    newRequest.requestID = id;
+    newRequest.descriptionOfRequests = requestDescriptions;
+
+    maintenanceRequests.push_back(newRequest);
 }
 
 void Flight::removeMaintenanceRequest(int requestID) {
@@ -170,13 +168,18 @@ void Flight::removeMaintenanceRequest(int requestID) {
 }
 
 list<MaintenanceRequests> Flight::getMaintenanceRequests() const {
-    return maintenanceRequests;
+    list<MaintenanceRequests> copyMaintenanceRequests = maintenanceRequests;
+
+    for (const auto &request: copyMaintenanceRequests) {
+        for (const auto &description: request.descriptionOfRequests) {
+            cout << "Request ID: " << request.requestID << ", Description: " << description << endl;
+        }
+    }
+
+    // Return the copied list (not necessary for printing but consistent with your function signature)
+    return copyMaintenanceRequests;
 }
 
-bool Flight::isMaintenanceRequestInList(int requestID) const {
-    return any_of(maintenanceRequests.begin(), maintenanceRequests.end(),
-                  [requestID](const MaintenanceRequests &request) { return request.requestID == requestID; });
-}
 
 void Flight::clearMaintenanceRequests() {
     maintenanceRequests.clear();
@@ -189,8 +192,20 @@ void Flight::setDepartureAndArrivalCities(const string &departureCity, const str
 }
 
 vector<pair<string, string>> Flight::getDepartureAndArrivalCities() const {
-    return departureAndArrivalCities;
+    vector<pair<string, string>> cities;
+
+    cities.reserve(departureAndArrivalCities.size());
+    for (const auto &currentPair: departureAndArrivalCities) {
+        cities.push_back(currentPair);
+    }
+
+    for (const auto &cityPair : cities) {
+        cout << "Departure City: " << cityPair.first << "\n   Arrival City: " << cityPair.second << endl;
+    }
+
+    return cities;
 }
+
 
 // Point 4: Map
 void Flight::addFlightDetail(int detailID, const string &detailInfo) {
@@ -205,38 +220,6 @@ map<int, string> Flight::getFlightDetails() const {
     return flightDetailsMap;
 }
 
-// Point 5: Queue (Arriving Flights)
-void Flight::enqueueArrivingFlight(const Flight &arrivingFlight) {
-    checkInQueue.push(arrivingFlight);
-}
-
-Flight Flight::dequeueArrivingFlight() {
-    if (!checkInQueue.empty()) {
-        Flight frontFlight = checkInQueue.front();
-        checkInQueue.pop();
-        return frontFlight;
-    } else {
-        // Return an empty flight if the queue is empty
-        return {};
-    }
-}
-
-// Point 6: Deque (Departing Flights)
-void Flight::enqueueDepartingFlight(const Flight &departingFlight) {
-    bookingDeque.push_back(departingFlight);
-}
-
-Flight Flight::dequeueDepartingFlight() {
-    if (!bookingDeque.empty()) {
-        Flight backFlight = bookingDeque.back();
-        bookingDeque.pop_back();
-        return backFlight;
-    } else {
-        // Return an empty flight if the deque is empty
-        return {};
-    }
-}
-
 // Point 7: Set
 void Flight::addDestinationToSet(const string &destination) {
     uniqueDestinations.insert(destination);
@@ -247,8 +230,147 @@ void Flight::removeDestinationFromSet(const string &destination) {
 }
 
 set<string> Flight::getUniqueDestinations() const {
-    return uniqueDestinations;
+    set<string> destinations;
+
+    for (const auto& dest : uniqueDestinations) {
+        cout << "Destination: " << dest << endl;
+        destinations.insert(dest);
+    }
+
+    return destinations;
 }
+string Flight::getDepartureTime() const {
+    struct tm *timeInfo;
+    timeInfo = localtime(&departureTime);
+    char buffer[80];
+    strftime(buffer, 80, "%Y-%m-%d %H:%M:%S", timeInfo);
+    return string(buffer);
+}
+
+void Flight::setDepartureTime(const string &theTime) {
+
+    if (!theTime.empty()) {
+        departureTime = stoi(theTime);
+    }
+    if (theTime.empty()) {
+
+        struct tm timeInfo{};
+        time_t userTime;
+        int month, day, hour, minute;
+        char inputChar;
+
+
+        cout << "Creating a new departure time..." << endl;
+
+        cout << "Is it this month (Y/N): ";
+        cin >> inputChar;
+
+        while (inputChar != 'Y' && inputChar != 'y' && inputChar != 'N' && inputChar != 'n') {
+            cout << "Invalid input. Please enter 'Y' or 'N': ";
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cin >> inputChar;
+        }
+
+        if (inputChar == 'N' || inputChar == 'n') {
+            cout << "Enter month (1-12): ";
+            cin >> month;
+
+            while (month < 1 || month > 12) {
+                cout << "Invalid input. Please enter a month between 1 and 12: ";
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cin >> month;
+            }
+        }
+
+        cout << "Enter Day: ";
+        cin >> day;
+
+        while (day < 1 || day > 31) {
+            cout << "Invalid input. Please enter a day between 1 and 31: ";
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cin >> day;
+        }
+
+        cout << "Pickup Hour (0-23): ";
+        cin >> hour;
+
+        while (hour < 0 || hour > 23) {
+            cout << "Invalid input. Please enter an hour between 0 and 23: ";
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cin >> hour;
+        }
+
+        cout << "Pickup Minute (0-59): ";
+        cin >> minute;
+
+        while (minute < 0 || minute > 59) {
+            cout << "Invalid input. Please enter a minute between 0 and 59: ";
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cin >> minute;
+        }
+
+        cout << endl;
+
+        int hours, minutes;
+        cout << "Enter the duration of the flight:" << endl;
+        cout << "Hours: ";
+        cin >> hours;
+        cout << "Minutes: ";
+        cin >> minutes;
+
+        // Calculate the arrival time
+        arrivalTime = departureTime + (hours * 3600) + (minutes * 60);
+        setArrivalTime(arrivalTime);
+
+        time_t now;
+        time(&now);
+        timeInfo = *localtime(&now);
+
+        /* Previous months are 'next year', so add +1 to the year */
+        if (inputChar == 'N' || inputChar == 'n') {
+            if (month < timeInfo.tm_mon + 1) {
+                timeInfo.tm_year++;
+            }
+            timeInfo.tm_mon = month - 1;
+        }
+
+        timeInfo.tm_mday = day;
+        timeInfo.tm_hour = hour;
+        timeInfo.tm_min = minute;
+        timeInfo.tm_sec = 0;
+        timeInfo.tm_isdst = -1;
+
+        userTime = mktime(&timeInfo);
+        departureTime = userTime;
+    }
+}
+
+string Flight::getArrivalTime() const {
+    struct tm *timeInfo;
+    timeInfo = localtime(&departureTime);
+    char buffer[80];
+    strftime(buffer, 80, "%Y-%m-%d %H:%M:%S", timeInfo);
+    return string(buffer);
+}
+
+
+void Flight::setArrivalTime(time_t &time) {
+    arrivalTime = time;
+}
+
+void Flight::setCrewIDs(int crewID) {
+    crewIDs.push_back(crewID);
+}
+
+vector<int> Flight::getCrewIDs() const {
+    return crewIDs;
+};
+
 
 Flight::Flight() = default;
 

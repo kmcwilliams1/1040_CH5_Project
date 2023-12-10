@@ -82,7 +82,7 @@ int main() {
         } else if (lastRole == crewSearchWord) {
             collection->readCrewProperties(readingLine, crew);
         } else if (lastRole == flightSearchWord) {
-            collection->readFlightProperties(readingLine);
+            collection->readFlightProperties(readingLine, flight);
         }
 
         cout << "\n";

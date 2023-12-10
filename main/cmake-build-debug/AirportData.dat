@@ -1,10 +1,10 @@
-#Airport Data - airportName,callSign,numberOfGates,listOfFlights,dynamicMaintenanceUpdates,flightPair,uniqueDestinations
+#Airport Data - airportName,callSign,numberOfGates,listOfFlights,flightPair,uniqueDestinations
 Los Angeles International Airport,LAX,10,7,ABC123,DEF456,GHI789,JKL901,MNO234,UVW5456,XYZ789,3,(LAX,SFO),(LAX,DAL),(LAX,PHO),3,SFO,DAL,PHO,
 San Francisco International Airport,SFO,12,4,TYH795,POW897,FRT431,MYT759,2,(SFO,JFK),(SFO,HOU),2,JFK,HOU,
 
 
-#Flight Data - flightNumber,gate,passengerCount,seatCount,isFueled,departureTime,landingTime,listOfCrewMembers,dynamicFlightUpdates,maintenanceRequests,departureAndArrivalCities,flightDetailsMap,checkInQueue,bookingDeque,uniqueDestinations
-ABC123,A1,150,200,true,1641578400,1641592800,3,12345,54321,13579,2,(1641580000, GateChange: B3), (1641586000, Delayed: 30 minutes),1,(No Trouble),2,(LAX, SFO), (SFO, JFK),2,1:Details1, 2:Details2,3,UVW5456, XYZ789, DEF456,4,LAX, SFO, JFK, DAL
+#Flight Data - flightNumber,gate,passengerCount,seatCount,isFueled,departureTime,arrivalTime,listOfCrewMembers,maintenanceRequests,departureAndArrivalCities,flightDetailsMap,uniqueDestinations
+ABC123,A1,150,200,true,1641578400,1641592800,3,12345,54321,13579,3,(1040: Fix paneling on left wing, Check windshield, Check Brakes),(1041: Check Tire Pressure),(1042: Broken Tail Light),2,(LAX,SFO),(SFO,JFK),2,(1:No Update),(2:High Wind SSW, Altitude 45000 ft),4,LAX, SFO, JFK, DAL
 
 
 #Crew Data - CrewType,name,employeeID,listOfAssignedFlights,flightAssignments,assignedFlightPair,assignedFlightsMap,updateQueue,updateDeque,uniqueDestinations
