@@ -26,8 +26,6 @@ private:
     // Point 6: Deque (Departing Flights)
     deque<Flight> departingFlights;
 
-    // Point 7: Set
-    set<string> uniqueDestinations;
 
 private:
     // Additional Variables
@@ -69,12 +67,6 @@ public: //7 points of study methods
     bool isDepartingFlightsEmpty() const;
     void clearDepartingFlights();
 
-    // Point 7: Set
-    void addToUniqueDestinations(const string& destination);
-    void removeFromUniqueDestinations(const string& destination);
-    set<string> getUniqueDestinations() const;
-    bool isDestinationInSet(const string& destination) const;
-    void clearUniqueDestinations();
 
 
     public: //Accessor Mehthods

@@ -11,7 +11,6 @@ class Pilot : public Crew {
 
 
 private:
-    int pilotID{};
     enum class RoleName {
         pilot = 1,
         copilot,
@@ -19,15 +18,19 @@ private:
     };
     RoleName roleName{};
 
+    // Point 4: Map
+    map<RoleName, string> assignedFlightsMap;
 
 public:// Methods
 
-     int getEmployeeID() const override;
-
-     void setEmployeeID() override;
-
     Pilot();
+
+    ~Pilot();
+
+
+    void readPilotProperties(const string &basicString);
 };
+
 
 
 #endif //INC_1040_CH5_PRACTICEPROJECT_PILOT_H

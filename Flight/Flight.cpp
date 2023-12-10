@@ -31,11 +31,9 @@ void Flight::addCrewMember(int employeeID, Crew::EmployeeType type) {
     CrewList crew;
     if (type == Crew::EmployeeType::Pilot) {
         auto *newPilot = new Pilot();
-        newPilot->setEmployeeID();
         crew.pilotList.push_back(newPilot);
     } else if (type == Crew::EmployeeType::Attendant) {
         auto *newAttendant = new Attendant();
-        newAttendant->setEmployeeID();
         crew.attendantList.push_back(newAttendant);
     }
 
@@ -45,27 +43,8 @@ void Flight::addCrewMember(int employeeID, Crew::EmployeeType type) {
 }
 
 void Flight::addCrewMember(const string &name, Crew::EmployeeType type) {
-    // Create a new instance of either Pilot or Attendant based on the type
-    Crew *newCrewMember = nullptr;
 
-    if (type == Crew::EmployeeType::Pilot) {
-        newCrewMember = new Pilot();
-    } else if (type == Crew::EmployeeType::Attendant) {
-        newCrewMember = new Attendant();
-    }
 
-    // Set the name of the crew member
-    if (newCrewMember != nullptr) newCrewMember->setName(name);
-
-    // Add the crew member to the appropriate list
-    CrewList crewList;
-    if (type == Crew::EmployeeType::Pilot) {
-        crewList.pilotList.push_back(dynamic_cast<Pilot *>(newCrewMember));
-    } else if (type == Crew::EmployeeType::Attendant) {
-        crewList.attendantList.push_back(dynamic_cast<Attendant *>(newCrewMember));
-    }
-
-    listOfCrewMembers.push_back(crewList);
 }
 
 void Flight::removeCrewMember(int employeeID) {

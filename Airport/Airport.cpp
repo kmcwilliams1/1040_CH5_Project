@@ -82,9 +82,6 @@ void Airport::clearArrivingFlights() {
     }
 }
 
-// airport.cpp
-
-#include "Airport.h"
 
 // Point 6: Deque (Departing Flights)
 void Airport::pushDepartingFlightFront(const Flight& flight) {
@@ -131,28 +128,6 @@ bool Airport::isDepartingFlightsEmpty() const {
 void Airport::clearDepartingFlights() {
     departingFlights.clear();
 }
-
-// Point 7: Set
-void Airport::addToUniqueDestinations(const string& destination) {
-    uniqueDestinations.insert(destination);
-}
-
-void Airport::removeFromUniqueDestinations(const string& destination) {
-    uniqueDestinations.erase(destination);
-}
-
-set<string> Airport::getUniqueDestinations() const {
-    return uniqueDestinations;
-}
-
-bool Airport::isDestinationInSet(const string& destination) const {
-    return uniqueDestinations.find(destination) != uniqueDestinations.end();
-}
-
-void Airport::clearUniqueDestinations() {
-    uniqueDestinations.clear();
-}
-
 
 
 

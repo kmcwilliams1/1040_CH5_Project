@@ -1,20 +1,33 @@
 
 
 #include <random>
+#include <sstream>
 #include "Pilot.h"
 
-int Pilot::getEmployeeID() const {
-    return pilotID;
-}
 
-void Pilot::setEmployeeID() {
-    random_device rd;
-    mt19937 generator(rd());
-    uniform_int_distribution<int> distribution(1, 20000);
-    int random_number = distribution(generator);
-    pilotID = random_number;
-}
 
-Pilot::Pilot() {
+Pilot::Pilot() = default;
+
+Pilot::~Pilot() = default;
+
+void Pilot::readPilotProperties(const string &basicString) {
+
+    istringstream dataStream(basicString);
+    string temp;
+
+    dataStream.clear();
+    dataStream.seekg(0);
+
+
+    getline(dataStream, temp, ',');
+    getline(dataStream, temp, ',');
+    {
+        name = temp;
+        getName();
+    }
+    getline(dataStream, temp, ',');
+    {
+
+    }
 
 }

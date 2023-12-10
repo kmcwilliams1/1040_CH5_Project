@@ -20,27 +20,17 @@ struct FlightAssignments {
 class Crew {
 public:
     Crew();
-    ~Crew() = default;
+
+    ~Crew();
 
 
 private:// 7 points of study from Chapter 5
-    // Point 1: List
-    list<string> listOfAssignedFlights;
 
     // Point 2: Linked List
     list<FlightAssignments> flightAssignments;
 
     // Point 3: Pair
-    pair<int, string> assignedFlightPair;
-
-    // Point 4: Map
-    map<int, string> assignedFlightsMap;
-
-    // Point 5: Queue
-    queue<FlightAssignments> updateQueue;
-
-    // Point 6: Deque
-    deque<FlightAssignments> updateDeque;
+    // pair<int, Flight> assignedFlightPair;
 
     // Point 7: Set
     set<string> uniqueDestinations;
@@ -52,12 +42,32 @@ public:
         Attendant
     };
     string name;
+    int employeeID{};
 
-    virtual int getEmployeeID() const;
 
-    virtual void setEmployeeID();
+public: //Getter and Setter Methods
+    string getName() const;
 
     void setName(const string &basicString);
+
+
+    int getEmployeeID() const;
+
+    void setEmployeeID(int newEmployeeID);
+
+
+    // Point 7: Set
+    void addToUniqueDestinations(const string &destination);
+
+    void removeFromUniqueDestinations(const string &destination);
+
+    set<string> getUniqueDestinations() const;
+
+    bool isDestinationInSet(const string &destination) const;
+
+    void clearUniqueDestinations();
+
+
 };
 
 

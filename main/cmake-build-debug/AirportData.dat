@@ -1,12 +1,12 @@
 #Airport Data - airportName,callSign,numberOfGates,listOfFlights,flightPair,uniqueDestinations
-Los Angeles International Airport,LAX,10,7,ABC123,DEF456,GHI789,JKL901,MNO234,UVW5456,XYZ789,3,(LAX,SFO),(LAX,DAL),(LAX,PHO),3,SFO,DAL,PHO,
-San Francisco International Airport,SFO,12,4,TYH795,POW897,FRT431,MYT759,2,(SFO,JFK),(SFO,HOU),2,JFK,HOU,
+Los Angeles International Airport,LAX,10,7,ABC123,DEF456,GHI789,JKL901,MNO234,UVW5456,XYZ789,3,(LAX,SFO),(LAX,DAL),(LAX,PHO),
+San Francisco International Airport,SFO,12,4,TYH795,POW897,FRT431,MYT759,2,(SFO,JFK),(SFO,HOU),
 
 
 #Flight Data - flightNumber,gate,passengerCount,seatCount,isFueled,departureTime,arrivalTime,listOfCrewMembers,maintenanceRequests,departureAndArrivalCities,flightDetailsMap,uniqueDestinations
 ABC123,A1,150,200,true,1641578400,1641592800,3,12345,54321,13579,3,(1040: Fix paneling on left wing, Check windshield, Check Brakes),(1041: Check Tire Pressure),(1042: Broken Tail Light),2,(LAX,SFO),(SFO,JFK),2,(1:No Update),(2:High Wind SSW, Altitude 45000 ft),4,LAX, SFO, JFK, DAL
 
 
-#Crew Data - CrewType,name,employeeID,listOfAssignedFlights,flightAssignments,assignedFlightPair,assignedFlightsMap,updateQueue,updateDeque,uniqueDestinations
-Pilot,John Doe,1001,2,ABC123, DEF456,2,(FlightUpdate: ABC123, NewDepartureTime: 1641579000), (MaintenanceRequest: 1, FuelLevel: 75.2, EngineInspected: true),2,(1, ABC123), (2, DEF456),2,(FlightUpdate: DEF456, NewDepartureTime: 1641605000), (MaintenanceRequest: 2, FuelLevel: 85.0, EngineInspected: false),3,LAX, SFO, JFK
-Attendant,Jane Smith,2001,3,PQR567, MNO234, UVW5456,3,(FlightUpdate: PQR567, NewDepartureTime: 1641586000), (MaintenanceRequest: 3, TirePressure: 30.0, BrakeCheck: true),2,(3, PQR567), (4, MNO234),2,(FlightUpdate: UVW5456, NewDepartureTime: 1641593000), (MaintenanceRequest: 4, TirePressure: 28.5, BrakeCheck: false),3,LAX, SFO, MIA
+#Crew Data - CrewType,name,employeeID,assignedFlightPair,flightDetailsMap,subClassMap,uniqueDestinations,
+Pilot,John Doe,1001,2,(1, ABC123),(2, DEF456),2,(LAX,SFO),(SFO,JFK),2(Pilot,ABC123),(CoPilot,DEF456),3,LAX,SFO,JFK,
+Attendant,Jane Smith,2001,2,(1, PQR567),(2, MNO234),2,(LAX,SFO),(SFO,MIA),2(PQR567,frontOfPlane),(MNO234,backOfPlane),3,LAX,SFO,MIA,

@@ -5,23 +5,25 @@
 
 #include "../Pilot/Pilot.h"
 
-class Attendant : public Crew  {
+class Attendant : public Crew {
 
-    private:
+private:
     int attendantID{};
-        enum class ServicePosition{
-            frontOfPlane = 1,
-            middleOfPlane,
-            backOfPlane
-        };
-        ServicePosition servicePosition{};
+    enum class ServicePosition {
+        frontOfPlane = 1,
+        middleOfPlane,
+        backOfPlane
+    };
+    ServicePosition servicePosition{};
+
+    // Point 4: Map
+    map<ServicePosition, string> assignedFlightsMap;
 
 public:
-    void setEmployeeID() override;
-
-    int getEmployeeID() const override;
-
     Attendant();
+    ~Attendant();
+
+    void readAttendantProperties(const string &basicString);
 };
 
 

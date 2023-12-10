@@ -180,14 +180,44 @@ void Collection::readFlightProperties(const string &basicString, Flight *flight)
 
     flight->getUniqueDestinations();
 
+    flights.push_back(flight);
 
 }
 
-void Collection::readCrewProperties(const string &basicString, Crew *thisCrew) {
+void Collection::readCrewProperties(const string &basicString, Crew*& thisCrew) {
 
     istringstream dataStream(basicString);
     string temp;
     int counter;
+
+    getline(dataStream, temp, ',');
+    {
+        const string &role = temp;
+        int subClass = 0;
+        if (role == "Pilot") {
+            subClass = 1;
+        } else if (role == "Attendant") {
+            subClass = 2;
+        }
+
+        switch (subClass) {
+            case 1: {
+                auto *pilot = new Pilot;
+                pilot->readPilotProperties(basicString);
+                crew.push_back(pilot);
+                break;
+            }
+            case 2: {
+                auto *attendant = new Attendant;
+                attendant->readAttendantProperties(basicString);
+                crew.push_back(attendant);
+                break;
+            }
+            default:
+                cerr << "Something went wrong, dawg" << endl;
+                break;
+        }
+    }
 
 }
 
@@ -244,16 +274,7 @@ void Collection::readAirportProperties(const string &basicString, Airport *airpo
         airport->setFlightPair(departureCity, arrivalCity);
 
     }
-    getline(dataStream, temp, ',');
-    {
-        counter = stoi(temp);
-    }
-    for (int i = 0; i < counter; i++) {
-        getline(dataStream, temp, ',');
-        {
-            airport->addToUniqueDestinations(temp);
-        }
 
+    airports.push_back(airport);
 
-    }
 }

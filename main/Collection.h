@@ -15,7 +15,7 @@ public:
 
 
     void readAirportProperties(const string &basicString, Airport *airport);
-    void readCrewProperties(const string &basicString, Crew *thisCrew);
+    void readCrewProperties(const string &basicString, Crew*& thisCrew);
     void readFlightProperties(const string &basicString, Flight *flight);
 
     void writeAirportProperties(ostream& dataFile);

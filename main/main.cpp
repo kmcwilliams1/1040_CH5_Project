@@ -78,7 +78,6 @@ int main() {
 
         if (lastRole == airportSearchWord) {
             collection->readAirportProperties(readingLine, airport);
-            collection->airports.push_back(airport);
         } else if (lastRole == crewSearchWord) {
             collection->readCrewProperties(readingLine, crew);
         } else if (lastRole == flightSearchWord) {
