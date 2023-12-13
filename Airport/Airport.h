@@ -33,59 +33,79 @@ private:
     string gate;
     string callSign;
     int numberOfGates;
-    vector<Flight*> flights;
+    vector<Flight *> flights;
     vector<string> flightIDs;
 
 public: //7 points of study methods
 
     // Point 1: List
-    void addFlightToList(const string& flightData);
-    void removeFlightFromList(const string& flightNumber);
+    void addFlightToList(const string &flightData);
+
+    void removeFlightFromList(const string &flightNumber);
+
     list<Flight> getListOfFlights() const;
-    bool isFlightInList(const string& flightNumber) const;
+
+    bool isFlightInList(const string &flightNumber) const;
 
 
     // Point 3: Pair
-    void setFlightPair(const string& departureCity, const string& arrivalCity);
+    void setFlightPair(const string &departureCity, const string &arrivalCity);
+
     pair<string, string> getFlightPair() const;
 
 
     // Point 5: Queue (Arriving Flights)
-    void enqueueArrivingFlight(const Flight& flight);
+    void enqueueArrivingFlight(const Flight &flight);
+
     void dequeueArrivingFlight();
+
     Flight frontArrivingFlight() const;
+
     bool isArrivingFlightsEmpty() const;
+
     void clearArrivingFlights();
 
     // Point 6: Deque (Departing Flights)
-    void pushDepartingFlightFront(const Flight& flight);
-    void pushDepartingFlightBack(const Flight& flight);
+    void pushDepartingFlightFront(const Flight &flight);
+
+    void pushDepartingFlightBack(const Flight &flight);
+
     void popDepartingFlightFront();
+
     void popDepartingFlightBack();
+
     Flight frontDepartingFlight() const;
+
     Flight backDepartingFlight() const;
+
     bool isDepartingFlightsEmpty() const;
+
     void clearDepartingFlights();
 
 
-
-    public: //Accessor Mehthods
+public: //Accessor Mehthods
     string getAirportName() const;
+
     void setAirportName(string &newName);
 
     string getGate() const;
+
     void setGate(string &newGate);
 
     int getNumberOfGates() const;
-    void  setNumberOfGates(int newNumberOfGates);
 
-    vector<Flight*> getFlights() const;
-    void setFlights(const vector<Flight*>& newFlights);
+    void setNumberOfGates(int newNumberOfGates);
+
+    vector<Flight *> getFlights() const;
+
+    void setFlights(const vector<Flight *> &newFlights);
 
     string getFlightIDs() const;
-    void setFlightIDs(const string& flightIDs);
+
+    void setFlightIDs(const string &flightIDs);
 
     string getCallSign() const;
+
     void setCallSign(string &basicString);
 
     void clearListOfFlights();

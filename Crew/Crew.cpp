@@ -50,3 +50,11 @@ void Crew::clearUniqueDestinations() {
     uniqueDestinations.clear();
 }
 
+pair<int, Flight *> Crew::getAssignedFlightPair() const {
+    return pair<int, Flight *>();
+}
+
+void Crew::setAssignedFlightPair(int id, Flight *flight) {
+
+}
+

@@ -61,25 +61,21 @@ int main() {
     while (getline(fin, readingLine)) {
         istringstream lineStream(readingLine);
 
-        cout << "Reading line: " << readingLine << endl;
 
         if (readingLine.empty() || readingLine[0] == '#') {
             lineStream >> role;
-            cout << "Role: " << role << endl;
-            cout << "\n";
-
             lastRole = role;
-
             continue;
         }
 
         getline(lineStream, role, ',');
-        cout << "Role: " << role << endl;
 
         if (lastRole == airportSearchWord) {
             collection->readAirportProperties(readingLine, airport);
         } else if (lastRole == crewSearchWord) {
-            collection->readCrewProperties(readingLine, crew);
+            cout << "Reading line: " << readingLine << endl;
+
+            collection->readCrewProperties(readingLine);
         } else if (lastRole == flightSearchWord) {
             collection->readFlightProperties(readingLine, flight);
         }

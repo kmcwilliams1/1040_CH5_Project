@@ -9,20 +9,22 @@
 
 class Collection {
 public:
-    vector<Airport*> airports;
-    vector<Crew*> crew;
-    vector<Flight*> flights;
+    vector<Airport *> airports;
+    vector<Crew *> crew;
+    vector<Flight *> flights;
 
 
     void readAirportProperties(const string &basicString, Airport *airport);
-    void readCrewProperties(const string &basicString, Crew*& thisCrew);
+
+    void readCrewProperties(const string &basicString);
+
     void readFlightProperties(const string &basicString, Flight *flight);
 
-    void writeAirportProperties(ostream& dataFile);
-    void writeCrewProperties(ostream& dataFile);
-    void writeFlightProperties(ostream& dataFile);
+    void writeAirportProperties(ostream &dataFile);
 
+    void writeCrewProperties(ostream &dataFile);
 
+    void writeFlightProperties(ostream &dataFile);
 
 
 };

@@ -178,7 +178,7 @@ vector<pair<string, string>> Flight::getDepartureAndArrivalCities() const {
         cities.push_back(currentPair);
     }
 
-    for (const auto &cityPair : cities) {
+    for (const auto &cityPair: cities) {
         cout << "Departure City: " << cityPair.first << "\n   Arrival City: " << cityPair.second << endl;
     }
 
@@ -211,13 +211,14 @@ void Flight::removeDestinationFromSet(const string &destination) {
 set<string> Flight::getUniqueDestinations() const {
     set<string> destinations;
 
-    for (const auto& dest : uniqueDestinations) {
+    for (const auto &dest: uniqueDestinations) {
         cout << "Destination: " << dest << endl;
         destinations.insert(dest);
     }
 
     return destinations;
 }
+
 string Flight::getDepartureTime() const {
     struct tm *timeInfo;
     timeInfo = localtime(&departureTime);

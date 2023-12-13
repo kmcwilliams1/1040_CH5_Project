@@ -63,7 +63,7 @@ private: // Variables
     bool isFueled{};
     time_t departureTime{};
     time_t arrivalTime{};
-    vector <int> crewIDs{};
+    vector<int> crewIDs{};
 
 
 public:// 7 points of study from Chapter 5 - Methods
@@ -96,14 +96,12 @@ public:// 7 points of study from Chapter 5 - Methods
     vector<pair<string, string>> getDepartureAndArrivalCities() const;
 
 
-
     // Point 4: Map
     void addFlightDetail(int detailID, const string &detailInfo);
 
     void removeFlightDetail(int detailID);
 
     map<int, string> getFlightDetails() const;
-
 
 
     // Point 7: Set

@@ -25,22 +25,18 @@ void Collection::readFlightProperties(const string &basicString, Flight *flight)
     getline(dataStream, temp, ',');
     {
         flight->setFlightNumber(temp);
-        cout << "flight number: " << flight->getFlightNumber() << endl;
     };
     getline(dataStream, temp, ',');
     {
         flight->setGate(temp);
-        cout << "gate number: " << flight->getGate() << endl;
     };
     getline(dataStream, temp, ',');
     {
         flight->setPassengerCount(stoi(temp));
-        cout << "passenger count: " << flight->getPassengerCount() << endl;
     };
     getline(dataStream, temp, ',');
     {
         flight->setSeatCount(stoi(temp));
-        cout << "seat count: " << flight->getSeatCount() << endl;
     };
     getline(dataStream, temp, ',');
     {
@@ -48,18 +44,15 @@ void Collection::readFlightProperties(const string &basicString, Flight *flight)
         (temp == "true") ? fueled = true : fueled = false;
         flight->setIsFueled(fueled);
         flight->setIsFueled(fueled);
-        cout << "fuel? " << flight->getIsFueled() << endl;
     };
     getline(dataStream, temp, ',');
     {
         flight->setDepartureTime(temp);
-        cout << "Departure time: " << flight->getDepartureTime() << endl;
     };
     getline(dataStream, temp, ',');
     {
         time_t timestamp = stoi(temp);
         flight->setArrivalTime(timestamp);
-        cout << "Arrival time: " << flight->getArrivalTime() << endl;
     };
     getline(dataStream, temp, ',');
     {
@@ -71,10 +64,6 @@ void Collection::readFlightProperties(const string &basicString, Flight *flight)
             flight->setCrewIDs(stoi(temp));
         }
     }
-    for (int id: flight->getCrewIDs()) {
-        cout << "Crew ID: " << id << endl;
-    }
-
 
     getline(dataStream, temp, ',');
     {
@@ -106,7 +95,6 @@ void Collection::readFlightProperties(const string &basicString, Flight *flight)
             requestDescriptions.push_back(request);
         }
 
-        cout << "adding " << requestDescriptions.size() << " requests" << endl;
         flight->pushMaintenanceRequest(stoi(id), requestDescriptions);
     }
     getline(dataStream, temp, ',');
@@ -135,14 +123,12 @@ void Collection::readFlightProperties(const string &basicString, Flight *flight)
         flight->setDepartureAndArrivalCities(departureCity, arrivalCity);
 
     }
-    flight->getDepartureAndArrivalCities();
 
 
     getline(dataStream, temp, ',');
     {
         counter = stoi(temp);
     }
-    cout << "counter is: " << counter << endl;
 
     for (int i = 0; i < counter; i++) {
         getline(dataStream, temp, ')');
@@ -150,13 +136,11 @@ void Collection::readFlightProperties(const string &basicString, Flight *flight)
         size_t startPos = temp.find('(') + 1;
         size_t endPos = temp.find(':') - 1;
         string detailID = temp.substr(startPos, endPos - startPos + 1);
-        cout << "DetailID: " << detailID << endl;
 
         size_t startPos2 = temp.find(':') + 1;
         size_t endPos2 = temp.find(')') - 1;
         string detailInfo = temp.substr(startPos2, endPos2);
 
-        cout << "detailInfo: " << detailInfo << endl;
         {
             flight->addFlightDetail(stoi(detailID), detailInfo);
         }
@@ -178,13 +162,11 @@ void Collection::readFlightProperties(const string &basicString, Flight *flight)
 
     }
 
-    flight->getUniqueDestinations();
-
     flights.push_back(flight);
 
 }
 
-void Collection::readCrewProperties(const string &basicString, Crew*& thisCrew) {
+void Collection::readCrewProperties(const string &basicString) {
 
     istringstream dataStream(basicString);
     string temp;
@@ -203,12 +185,14 @@ void Collection::readCrewProperties(const string &basicString, Crew*& thisCrew) 
         switch (subClass) {
             case 1: {
                 auto *pilot = new Pilot;
+                cout << "Pilot ready to read! " << endl;
                 pilot->readPilotProperties(basicString);
                 crew.push_back(pilot);
                 break;
             }
             case 2: {
                 auto *attendant = new Attendant;
+                cout << "Attendant ready to read! " << endl;
                 attendant->readAttendantProperties(basicString);
                 crew.push_back(attendant);
                 break;

@@ -21,6 +21,7 @@ private:
 
 public:
     Attendant();
+
     ~Attendant();
 
     void readAttendantProperties(const string &basicString);

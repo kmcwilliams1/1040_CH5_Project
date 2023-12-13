@@ -1,17 +1,14 @@
-
 #ifndef INC_1040_CH5_PRACTICEPROJECT_CREW_H
 #define INC_1040_CH5_PRACTICEPROJECT_CREW_H
 
 #include <list>
-#include <deque>
-#include <queue>
-#include <map>
 #include <set>
 #include <utility>
 #include <string>
 
-using namespace std;
+class Flight;  // Forward declaration
 
+using namespace std;
 
 struct FlightAssignments {
     // Flight update details
@@ -20,21 +17,19 @@ struct FlightAssignments {
 class Crew {
 public:
     Crew();
-
     ~Crew();
 
-
-private:// 7 points of study from Chapter 5
+private:
+    // 7 points of study from Chapter 5
 
     // Point 2: Linked List
     list<FlightAssignments> flightAssignments;
 
     // Point 3: Pair
-    // pair<int, Flight> assignedFlightPair;
+    pair<int, Flight *> assignedFlightPair;
 
     // Point 7: Set
     set<string> uniqueDestinations;
-
 
 public:
     enum class EmployeeType {
@@ -44,31 +39,27 @@ public:
     string name;
     int employeeID{};
 
-
-public: //Getter and Setter Methods
+public: // Getter and Setter Methods
     string getName() const;
-
     void setName(const string &basicString);
 
-
     int getEmployeeID() const;
-
     void setEmployeeID(int newEmployeeID);
 
+    // Point 2: Linked List
+    list<FlightAssignments> getFlightAssignments() const;
+
+    // Point 3: Pair
+    pair<int, Flight *> getAssignedFlightPair() const;
+    void setAssignedFlightPair(int id, Flight *flight);
 
     // Point 7: Set
     void addToUniqueDestinations(const string &destination);
-
     void removeFromUniqueDestinations(const string &destination);
-
     set<string> getUniqueDestinations() const;
-
     bool isDestinationInSet(const string &destination) const;
-
     void clearUniqueDestinations();
 
-
 };
-
 
 #endif //INC_1040_CH5_PRACTICEPROJECT_CREW_H

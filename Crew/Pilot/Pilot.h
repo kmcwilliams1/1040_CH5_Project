@@ -2,6 +2,7 @@
 #define INC_1040_CH5_PRACTICEPROJECT_PILOT_H
 
 
+#include <map>
 #include "../Crew.h"
 
 using namespace std;
@@ -30,7 +31,6 @@ public:// Methods
 
     void readPilotProperties(const string &basicString);
 };
-
 
 
 #endif //INC_1040_CH5_PRACTICEPROJECT_PILOT_H

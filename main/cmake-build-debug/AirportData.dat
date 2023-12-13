@@ -1,4 +1,4 @@
-#Airport Data - airportName,callSign,numberOfGates,listOfFlights,flightPair,uniqueDestinations
+#Airport Data - airportName,callSign,numberOfGates,listOfFlights,flightPair,
 Los Angeles International Airport,LAX,10,7,ABC123,DEF456,GHI789,JKL901,MNO234,UVW5456,XYZ789,3,(LAX,SFO),(LAX,DAL),(LAX,PHO),
 San Francisco International Airport,SFO,12,4,TYH795,POW897,FRT431,MYT759,2,(SFO,JFK),(SFO,HOU),
 

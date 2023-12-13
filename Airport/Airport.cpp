@@ -3,7 +3,7 @@
 #include <iostream>
 
 
-void Airport::addFlightToList(const string& flightData) {
+void Airport::addFlightToList(const string &flightData) {
     size_t colonPos = flightData.find(':');
     if (colonPos != string::npos) {
 
@@ -84,11 +84,11 @@ void Airport::clearArrivingFlights() {
 
 
 // Point 6: Deque (Departing Flights)
-void Airport::pushDepartingFlightFront(const Flight& flight) {
+void Airport::pushDepartingFlightFront(const Flight &flight) {
     departingFlights.push_front(flight);
 }
 
-void Airport::pushDepartingFlightBack(const Flight& flight) {
+void Airport::pushDepartingFlightBack(const Flight &flight) {
     departingFlights.push_back(flight);
 }
 
@@ -130,15 +130,13 @@ void Airport::clearDepartingFlights() {
 }
 
 
-
-
 //Accesssor Methods
 string Airport::getAirportName() const {
     return airportName;
 }
 
 void Airport::setAirportName(string &newName) {
-        airportName = newName;
+    airportName = newName;
 }
 
 string Airport::getGate() const {
@@ -161,7 +159,7 @@ vector<Flight *> Airport::getFlights() const {
     return flights;
 }
 
-void Airport::setFlights(const vector<Flight*>& newFlights) {
+void Airport::setFlights(const vector<Flight *> &newFlights) {
     flights = newFlights;
 }
 
@@ -174,12 +172,12 @@ string Airport::getCallSign() const {
 }
 
 string Airport::getFlightIDs() const {
-    for(string currentFlightID : flightIDs) {
+    for (string currentFlightID: flightIDs) {
         return currentFlightID;
     };
     return "";
 };
 
-void Airport::setFlightIDs(const string& newFlightID) {
+void Airport::setFlightIDs(const string &newFlightID) {
     flightIDs.push_back(newFlightID);
 }
