@@ -71,13 +71,12 @@ int main() {
         getline(lineStream, role, ',');
 
         if (lastRole == airportSearchWord) {
-            collection->readAirportProperties(readingLine, airport);
+            collection->readAirportProperties(readingLine);
         } else if (lastRole == crewSearchWord) {
             cout << "Reading line: " << readingLine << endl;
-
-            collection->readCrewProperties(readingLine);
+            collection->readCrewProperties(readingLine, collection);
         } else if (lastRole == flightSearchWord) {
-            collection->readFlightProperties(readingLine, flight);
+            collection->readFlightProperties(readingLine);
         }
 
         cout << "\n";

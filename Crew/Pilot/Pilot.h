@@ -7,7 +7,7 @@
 
 using namespace std;
 
-
+class Collection;
 class Pilot : public Crew {
 
 
@@ -29,7 +29,7 @@ public:// Methods
     ~Pilot();
 
 
-    void readPilotProperties(const string &basicString);
+    void readPilotProperties(const string &basicString, Collection *collection);
 };
 
 

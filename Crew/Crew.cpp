@@ -1,6 +1,7 @@
 
 #include "Crew.h"
 #include <random>
+#include <iostream>
 
 //Random number generator
 //    random_device rd;
@@ -50,11 +51,34 @@ void Crew::clearUniqueDestinations() {
     uniqueDestinations.clear();
 }
 
-pair<int, Flight *> Crew::getAssignedFlightPair() const {
-    return pair<int, Flight *>();
-}
 
 void Crew::setAssignedFlightPair(int id, Flight *flight) {
-
+    auto newFlightPair = make_pair(id, flight);
+    assignedFlightPairs.push_back(newFlightPair);
 }
+
+pair<int, Flight *> Crew::getAssignedFlightPair() const {
+    if (!assignedFlightPairs.empty()) {
+        return assignedFlightPairs.front();
+    } else {
+        return make_pair(0, nullptr);
+    }
+}
+void Crew::printAssignedFlightPair() const {
+    for (const auto &flightPair : assignedFlightPairs) {
+        cout << "ID: " << flightPair.first << ", Flight: " << flightPair.second << endl;
+    }
+}
+
+list<FlightAssignments> Crew::getFlightAssignments() const {
+    return flightAssignments;
+}
+void Crew::addFlightAssignment(int leg, const string &departureCity, const string &arrivalCity) {
+    FlightAssignments assignment;
+    assignment.flightLeg = leg;
+    assignment.departureCity = departureCity;
+    assignment.arrivalCity = arrivalCity;
+    flightAssignments.push_back(assignment);
+}
+
 

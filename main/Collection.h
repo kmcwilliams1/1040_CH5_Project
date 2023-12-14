@@ -14,11 +14,11 @@ public:
     vector<Flight *> flights;
 
 
-    void readAirportProperties(const string &basicString, Airport *airport);
+    void readAirportProperties(const string &basicString);
 
-    void readCrewProperties(const string &basicString);
+    void readCrewProperties(const string &basicString, Collection *collection);
 
-    void readFlightProperties(const string &basicString, Flight *flight);
+    void readFlightProperties(const string &basicString);
 
     void writeAirportProperties(ostream &dataFile);
 

@@ -15,11 +15,7 @@
 
 using namespace std;
 
-struct FlightUpdate {
-    string flightNumber;
-    string newDepartureTime;
-    string newDepartureGate;
-};
+
 
 struct MaintenanceRequests {
     vector<string> descriptionOfRequests;

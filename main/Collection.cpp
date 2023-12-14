@@ -15,12 +15,13 @@ void Collection::writeAirportProperties(ostream &dataFile) {
 
 }
 
-void Collection::readFlightProperties(const string &basicString, Flight *flight) {
+void Collection::readFlightProperties(const string &basicString) {
 
     istringstream dataStream(basicString);
     string temp;
     int counter;
 
+    auto *flight = new Flight;
 
     getline(dataStream, temp, ',');
     {
@@ -163,10 +164,11 @@ void Collection::readFlightProperties(const string &basicString, Flight *flight)
     }
 
     flights.push_back(flight);
+    flight = nullptr;
 
 }
 
-void Collection::readCrewProperties(const string &basicString) {
+void Collection::readCrewProperties(const string &basicString, Collection *collection) {
 
     istringstream dataStream(basicString);
     string temp;
@@ -186,7 +188,7 @@ void Collection::readCrewProperties(const string &basicString) {
             case 1: {
                 auto *pilot = new Pilot;
                 cout << "Pilot ready to read! " << endl;
-                pilot->readPilotProperties(basicString);
+                pilot->readPilotProperties(basicString, collection);
                 crew.push_back(pilot);
                 break;
             }
@@ -205,12 +207,13 @@ void Collection::readCrewProperties(const string &basicString) {
 
 }
 
-void Collection::readAirportProperties(const string &basicString, Airport *airport) {
+void Collection::readAirportProperties(const string &basicString) {
 
     istringstream dataStream(basicString);
     string temp;
     int counter;
 
+    auto *airport = new Airport;
 
     getline(dataStream, temp, ',');
     {
