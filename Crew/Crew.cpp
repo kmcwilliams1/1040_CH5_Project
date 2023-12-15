@@ -40,7 +40,14 @@ void Crew::removeFromUniqueDestinations(const string &destination) {
 }
 
 set<string> Crew::getUniqueDestinations() const {
-    return uniqueDestinations;
+return uniqueDestinations;
+}
+
+void Crew::printUniqueDestinations() const {
+    cout << "Unique Destinations:\n";
+    for (const auto &destination : uniqueDestinations) {
+        cout << destination << endl;
+    }
 }
 
 bool Crew::isDestinationInSet(const string &destination) const {

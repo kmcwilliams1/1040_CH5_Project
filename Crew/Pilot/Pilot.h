@@ -1,15 +1,17 @@
+// In Pilot.h
+
 #ifndef INC_1040_CH5_PRACTICEPROJECT_PILOT_H
 #define INC_1040_CH5_PRACTICEPROJECT_PILOT_H
 
-
 #include <map>
+#include <vector>
 #include "../Crew.h"
 
 using namespace std;
 
 class Collection;
-class Pilot : public Crew {
 
+class Pilot : public Crew {
 
 private:
     enum class RoleName {
@@ -19,18 +21,21 @@ private:
     };
     RoleName roleName{};
 
-    // Point 4: Map
-    map<RoleName, string> assignedFlightsMap;
+    vector<map<RoleName, string>> assignedFlightsMap;
 
-public:// Methods
-
+public:
+    // Methods
     Pilot();
-
     ~Pilot();
 
-
     void readPilotProperties(const string &basicString, Collection *collection);
-};
 
+    RoleName roleNameFromString(const string &roleStr);
+
+    // Public methods for assignedFlightsMap
+    void addAssignedFlight(const map<RoleName, string> &flight);
+    const vector<map<RoleName, string>>& getAssignedFlights() const;
+    void clearAssignedFlights();
+};
 
 #endif //INC_1040_CH5_PRACTICEPROJECT_PILOT_H

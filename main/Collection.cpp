@@ -152,6 +152,10 @@ void Collection::readFlightProperties(const string &basicString) {
         counter = stoi(temp);
     }
 
+
+
+
+
     for (int i = 0; i < counter; i++) {
         string destination;
         getline(dataStream, destination, ',');

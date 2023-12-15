@@ -79,10 +79,10 @@ int main() {
             collection->readFlightProperties(readingLine);
         }
 
-        cout << "\n";
+
     }
 
-
+    cout << "\n";
     cout << "Airport size: " << collection->airports.size() << endl;
     cout << "Flight size: " << collection->flights.size() << endl;
     cout << "Crew size: " << collection->crew.size() << endl;
