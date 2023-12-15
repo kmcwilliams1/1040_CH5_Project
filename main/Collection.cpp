@@ -198,7 +198,7 @@ void Collection::readCrewProperties(const string &basicString, Collection *colle
             case 2: {
                 auto *attendant = new Attendant;
                 cout << "Attendant ready to read! " << endl;
-                attendant->readAttendantProperties(basicString);
+                attendant->readAttendantProperties(basicString, collection);
                 crew.push_back(attendant);
                 break;
             }

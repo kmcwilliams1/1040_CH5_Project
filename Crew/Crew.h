@@ -8,7 +8,6 @@
 #include <vector>
 
 class Flight;
-
 class Collection;
 
 using namespace std;
@@ -32,7 +31,6 @@ private:
     list<FlightAssignments> flightAssignments;
 
     // Point 3: Pair
-
     vector<pair<int, Flight *>> assignedFlightPairs;
 
     // Point 7: Set
@@ -57,12 +55,13 @@ public: // Getter and Setter Methods
 
     // Point 2: Linked List
     list<FlightAssignments> getFlightAssignments() const;
+
     void addFlightAssignment(int leg, const string &departureCity, const string &arrivalCity);
 
     // Point 3: Pair
     pair<int, Flight *> getAssignedFlightPair() const;
 
-    void setAssignedFlightPair(int id, Flight *flight);
+    void setAssignedFlightPair(int leg, Flight *flight);
 
     void printAssignedFlightPair() const;
 

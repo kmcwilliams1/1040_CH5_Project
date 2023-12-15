@@ -6,6 +6,7 @@
 #include <map>
 #include "../Crew.h"
 
+class Collection;
 class Attendant : public Crew {
 
 private:
@@ -25,7 +26,7 @@ public:
     Attendant();
     ~Attendant();
 
-    void readAttendantProperties(const string &basicString);
+    void readAttendantProperties(const string &basicString, Collection *collection);
 
     ServicePosition servicePositionFromString(const string &positionStr);
 

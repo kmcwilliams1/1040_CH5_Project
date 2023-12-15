@@ -18,5 +18,5 @@ XYZ789,F7,280,330,true,1641578400,1641592800,3,12351,54327,13585,1,(1058: Check 
 #Crew Data - CrewType,name,employeeID,assignedFlightPair,FlightAssignments,subClassMap,uniqueDestinations,
 Pilot,John Doe,1001,2,(1,ABC123),(2,DEF456),2,(LAX,SFO),(SFO,JFK),2,(Pilot,ABC123),(CoPilot,DEF456),3,LAX,SFO,JFK,
 Pilot,Bob Johnson,1002,2,(1,JKL901),(2,PQR567),2,(JFK,LAX),(LAX,SFO),2,(Pilot,JKL901),(CoPilot,PQR567),3,JFK,LAX,SFO,
-Attendant,Alice Williams,2002,2,(1,XYZ789),(2,PQR567),2,(DFW,PDX),(PDX,BOS),2(frontOfPlane,XYZ789),(backOfPlane,PQR567),3,DFW,PDX,BOS
-Attendant,Jane Smith,2001,2,(1,PQR567),(2,MNO234),2,(LAX,SFO),(SFO,MIA),2(frontOfPlane,PQR567),(backOfPlane,MNO234),3,LAX,SFO,MIA,
+Attendant,Alice Williams,2002,2,(1,XYZ789),(2,PQR567),2,(DFW,PDX),(PDX,BOS),2,(frontOfPlane,XYZ789),(backOfPlane,PQR567),3,DFW,PDX,BOS
+Attendant,Jane Smith,2001,2,(1,PQR567),(2,MNO234),2,(LAX,SFO),(SFO,MIA),2,(frontOfPlane,PQR567),(backOfPlane,MNO234),3,LAX,SFO,MIA,
