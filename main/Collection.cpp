@@ -191,7 +191,6 @@ void Collection::readCrewProperties(const string &basicString, Collection *colle
         switch (subClass) {
             case 1: {
                 auto *pilot = new Pilot;
-                cout << "Pilot ready to read! " << endl;
                 pilot->readPilotProperties(basicString, collection);
                 crew.push_back(pilot);
                 break;

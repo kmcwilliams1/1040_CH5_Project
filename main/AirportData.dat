@@ -1,14 +1,23 @@
-#Airport Data - airportName,callSign,numberOfGates,listOfFlights,dynamicMaintenanceUpdates,flightPair,flightDetails,arrivingFlights,departingFlights,uniqueDestinations
-John F. Kennedy International Airport,JFK,10,2,ABC123,DEF456,2,1040,1041,3(LAX,SFO),(LAX, DAL),(LAX,PHO),(ABC123:Details1, DEF456:Details2),3,GHI789,JKL901,MNO234,2,UVW5456,XYZ789,DEF456,LAX,SFO,DAL,PHO,
-Los Angeles International Airport,LAX,15,2,GHI789,JKL901,1,2050,(GHI789:Details3),2,MNO234,PQR567,1,XYZ789,LAX,SFO,
-San Francisco International Airport,SFO,12,2,XYZ789,PQR567,2,3070,3080,2(LAX,SFO),(XYZ789:Details4, PQR567:Details5),1,JKL901,SFO,
+#Airport Data - airportName,callSign,numberOfGates,listOfFlights,flightPair,
+Los Angeles International Airport,LAX,10,7,ABC123,DEF456,GHI789,JKL901,MNO234,UVW456,XYZ789,3,(LAX,SFO),(LAX,DAL),(LAX,PHO),
+San Francisco International Airport,SFO,12,4,TYH795,POW897,FRT431,MYT759,2,(SFO,JFK),(SFO,HOU),
 
+New York International Airport,JFK,15,5,JKL901,PQR567,STU890,VWX123,YZA456,3,(JFK,LAX),(JFK,SFO),(JFK,MIA),
+Chicago O'Hare International Airport,ORD,8,3,DEF456,GHI789,JKL901,3,(ORD,SFO),(ORD,LAX),(ORD,ATL),
+Dallas/Fort Worth International Airport,DFW,12,3,GHI789,MNO234,UVW456,3,(DFW,SFO),(DFW,PDX),(DFW,MIA),
+Miami International Airport,MIA,10,3,MNO234,UVW456,XYZ789,3,(MIA,ORD),(MIA,LAX),(MIA,HNL),
 
-#Flight Data - flightNumber,gate,passengerCount,seatCount,isFueled,departureTime,landingTime,listOfCrewMembers,dynamicFlightUpdates,maintenanceRequests,departureAndArrivalCities,flightDetailsMap,checkInQueue,bookingDeque,uniqueDestinations
-ABC123,A1,150,200,true,1641578400,1641592800,3,12345,54321,13579,2,(1641580000, GateChange: B3), (1641586000, Delayed: 30 minutes),1,(Fuel: 80.5, Checked Engine: true, Tire Pressure: 32.5, Brake Check: false),2,(LAX, SFO), (SFO, JFK),2,1:Details1, 2:Details2,3,UVW5456, XYZ789, DEF456,4,LAX, SFO, JFK, DAL
+#Flight Data - flightNumber,gate,passengerCount,seatCount,isFueled,departureTime,arrivalTime,listOfCrewMembers,maintenanceRequests,departureAndArrivalCities,flightDetailsMap,uniqueDestinations
+ABC123,A1,150,200,true,1641578400,1641592800,3,12345,54321,13579,3,(1040: Fix paneling on left wing, Check windshield, Check Brakes),(1041: Check Tire Pressure),(1042: Broken Tail Light),2,(LAX,SFO),(SFO,JFK),2,(1:No Update),(2:High Wind SSW, Altitude 45000 ft),4,LAX, SFO, JFK, DAL
+DEF456,A2,180,220,true,1641578400,1641592800,3,12346,54322,13580,2,(1043: Check Engine, Refuel),(1045: Clean Cabin),2,(SFO,ORD),(ORD,MIA),2,(3:No Update),(4:Clear Skies, Altitude 38000 ft),4,SFO, ORD, MIA, LGA
+GHI789,B3,200,250,true,1641578400,1641592800,3,12347,54323,13581,2,(1046: Check Avionics),(1047: Replace Oxygen Masks, Inspect Landing Gear),2,(JFK,LAX),(LAX,HNL),2,(5:No Update),(6:Turbulence Expected, Altitude 40000 ft),4,JFK, LAX, HNL, ANC
+JKL901,C4,220,270,true,1641578400,1641592800,3,12348,54324,13582,1,(1049: Check Navigation System, Test Autopilot),2,(MIA,DFW),(DFW,SEA),2,(7:No Update),(8:Cloudy Skies, Altitude 35000 ft),4,MIA, DFW, SEA, PDX
+MNO234,D5,240,290,true,1641578400,1641592800,3,12349,54325,13583,2,(1052: Inspect Cabin Lights),(1053: Check Hydraulics, Replace Seat Belts),2,(ORD,LGA),(LGA,SFO),2,(9:No Update),(10:Thunderstorms Expected, Altitude 32000 ft),4,ORD, LGA, SFO, LAS
+UVW456,E6,260,310,true,1641578400,1641592800,3,12350,54326,13584,3,(1055: Check Ailerons),(1056: Refuel),(1057: Inspect Flaps),2,(SEA,ANC),(ANC,ATL),2,(11:No Update),(12:Clear Skies, Altitude 36000 ft),4,SEA, ANC, ATL, IAH
+XYZ789,F7,280,330,true,1641578400,1641592800,3,12351,54327,13585,1,(1058: Check Rudder, Clean Windshield, Test Emergency Exits),2,(DFW,PDX),(PDX,BOS),2,(13:No Update),(14:Windy Conditions, Altitude 41000 ft),4,DFW, PDX, BOS, ORD
 
-
-
-#Crew Data - CrewType,name,employeeID,listOfAssignedFlights,flightAssignments,assignedFlightPair,assignedFlightsMap,updateQueue,updateDeque,uniqueDestinations
-Pilot,John Doe,1001,2,ABC123, DEF456,2,(FlightUpdate: ABC123, NewDepartureTime: 1641579000), (MaintenanceRequest: 1, FuelLevel: 75.2, EngineInspected: true),2,(1, ABC123), (2, DEF456),2,(FlightUpdate: DEF456, NewDepartureTime: 1641605000), (MaintenanceRequest: 2, FuelLevel: 85.0, EngineInspected: false),3,LAX, SFO, JFK
-Attendant,Jane Smith,2001,3,PQR567, MNO234, UVW5456,3,(FlightUpdate: PQR567, NewDepartureTime: 1641586000), (MaintenanceRequest: 3, TirePressure: 30.0, BrakeCheck: true),2,(3, PQR567), (4, MNO234),2,(FlightUpdate: UVW5456, NewDepartureTime: 1641593000), (MaintenanceRequest: 4, TirePressure: 28.5, BrakeCheck: false),3,LAX, SFO, MIA
+#Crew Data - CrewType,name,employeeID,assignedFlightPair,FlightAssignments,subClassMap,uniqueDestinations,
+Pilot,John Doe,1001,2,(1,ABC123),(2,DEF456),2,(LAX,SFO),(SFO,JFK),2,(Pilot,ABC123),(CoPilot,DEF456),3,LAX,SFO,JFK,
+Attendant,Jane Smith,2001,2,(1,PQR567),(2,MNO234),2,(LAX,SFO),(SFO,MIA),2(frontOfPlane,PQR567),(backOfPlane,MNO234),3,LAX,SFO,MIA,
+Pilot,Bob Johnson,1002,2,(1,JKL901),(2,PQR567),2,(JFK,LAX),(LAX,SFO),2,(Pilot,JKL901),(CoPilot,PQR567),3,JFK,LAX,SFO,
+Attendant,Alice Williams,2002,2,(1,XYZ789),(2,PQR567),2,(DFW,PDX),(PDX,BOS),2(frontOfPlane,XYZ789),(backOfPlane,PQR567),3,DFW,PDX,BOS

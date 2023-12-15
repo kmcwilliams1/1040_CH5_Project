@@ -1,14 +1,16 @@
+// Attendant.h
 
 #ifndef INC_1040_CH5_PRACTICEPROJECT_ATTENDANT_H
 #define INC_1040_CH5_PRACTICEPROJECT_ATTENDANT_H
 
-
-#include "../Pilot/Pilot.h"
+#include <map>
+#include "../Crew.h"
 
 class Attendant : public Crew {
 
 private:
     int attendantID{};
+
     enum class ServicePosition {
         frontOfPlane = 1,
         middleOfPlane,
@@ -21,11 +23,16 @@ private:
 
 public:
     Attendant();
-
     ~Attendant();
 
     void readAttendantProperties(const string &basicString);
-};
 
+    ServicePosition servicePositionFromString(const string &positionStr);
+
+    // Public methods for assignedFlightsMap
+    void addAssignedFlight(ServicePosition position, const string &flight);
+    const map<ServicePosition, string>& getAssignedFlights() const;
+    void clearAssignedFlights();
+};
 
 #endif //INC_1040_CH5_PRACTICEPROJECT_ATTENDANT_H
