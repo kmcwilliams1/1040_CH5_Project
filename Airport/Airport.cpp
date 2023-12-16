@@ -134,15 +134,19 @@ void Airport::setNumberOfGates(int newNumberOfGates) {
 
 list<Flight *> Airport::getFlightsInvolvingThisAirport() const {
     cout << "Schedule: " << endl;
-    for (auto &currentFlight : listOfFlights) {
-        cout << "Flight: " << currentFlight->getFlightNumber() << endl;
-        for (const auto &cityPair : currentFlight->getDepartureAndArrivalCities()) {
+    cout << "--------------------" << endl;
+    for (auto &currentFlight: listOfFlights) {
+        for (const auto &cityPair: currentFlight->getDepartureAndArrivalCities()) {
             if (cityPair.first == getCallSign() || cityPair.second == getCallSign()) {
+                cout << "Flight: " << currentFlight->getFlightNumber() << endl;
                 cout << "Departure City: " << cityPair.first << " Arrival City: " << cityPair.second << endl;
+                cout << "Gate: " << currentFlight->getGate() << endl;
+                cout << "--------------------" << endl;
                 break;
             }
         }
     }
+    cout << "\n";
     return listOfFlights;
 }
 

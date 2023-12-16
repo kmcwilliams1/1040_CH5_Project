@@ -56,7 +56,7 @@ int main() {
     string airportSearchWord = "#Airport";
     string flightSearchWord = "#Flight";
     string lastRole;
-    cout << "\n\n";
+
 
     while (getline(fin, readingLine)) {
         istringstream lineStream(readingLine);
@@ -80,8 +80,9 @@ int main() {
 
 
     }
+    cout << "\n\n\n\n\n\n";
 
-    cout << "\n";
+
     cout << "Airport size: " << collection->airports.size() << endl;
     cout << "Flight size: " << collection->flights.size() << endl;
     cout << "Crew size: " << collection->crew.size() << endl;
@@ -104,7 +105,7 @@ int main() {
                 "                         /_/   \\_\\_|_|  |_|_|_| |_|\\___||___/          " << endl;
 
         cout << "| ********************************* Main Menu *************************************** |" << endl;
-        cout << "| ** A.    View Flights   ** |" << "| ** B.   Manage Flights  ** |" << "| ** C.     Exit       ** |"
+        cout << "| ** A.    View Flights   ** |" << "| ** B.  Manage Flights   ** |" << "| ** C.  Manage Crew   ** |"
              << endl;;
         cout << "| *********************************************************************************** |" << endl;
 
@@ -115,11 +116,11 @@ int main() {
             case 'A':
             case 'a': // View Flights
             {
-                cout << "Which airport would you like to view " << endl;
+                cout << "Which airport would you like to view \n" << endl;
                 for (auto *currentAirport: collection->airports) {
-                    cout << currentAirport->getAirportName() << "   " << currentAirport->getCallSign() << endl;
+                    cout << currentAirport->getAirportName() << " - " << currentAirport->getCallSign() << endl;
                 }
-                cout << "Enter Airport Abbreviation: ";
+                cout << "Enter Airport Abbreviation:   ";
                 cin >> str;
                 for (char &c: str) {
                     c = std::toupper(c);
@@ -141,7 +142,7 @@ int main() {
                 for (auto &currentAirport: collection->airports) {
 
                     if (currentAirport->getCallSign() == str) {
-                        cout << "Found Airport: " << currentAirport->getCallSign() << endl;
+                        cout << "\n";
                         currentAirport->getFlightsInvolvingThisAirport();
                         break;
                     }
@@ -163,33 +164,83 @@ int main() {
                 if (option == 'c' || option == 'C') {
                     collection->addNewFlight();
                 } else if (option == 'u' || option == 'U') {
+                    auto *tempFlight = new Flight();
+
                     cout << "Edit from airport or flight list? (A/F) " << endl;
+                    cin >> option;
+
+
                     if (option == 'a' || option == 'A') {
 
+                        cout << "Which airport would you like to manage " << endl;
+                        for (auto *currentAirport: collection->airports) {
+                            cout << currentAirport->getAirportName() << "   " << currentAirport->getCallSign() << endl;
+                        }
+                        cout << "Enter Airport Abbreviation: ";
+                        cin >> str;
+                        for (char &c: str) {
+                            c = std::toupper(c);
+                        }
 
+                        for (auto &currentAirport: collection->airports) {
+                            if (currentAirport->getCallSign() == str) {
+                                cout << "Found " << str << endl;
+                                cout << "\n";
+                                currentAirport->getFlightsInvolvingThisAirport();
+
+
+                                cout << "Which flight would you like to manage? " << endl;
+                                cin >> str;
+                                for (char &c: str) {
+                                    c = std::toupper(c);
+                                }
+                                cout << "searching for " << str << endl;
+                                for (auto *currentFlight: currentAirport->getListOfFlights()) {
+                                    if (currentFlight->getFlightNumber() == str) {
+                                        cout << "WEEHEE " << endl;
+                                        tempFlight = currentFlight;
+                                    }
+                                }
+
+                                tempFlight->getDepartureTime();
+
+                                break;
+
+                            }
+                        }
                     } else if (option == 'F' || option == 'f') {
                         for (auto &currentFlight: collection->flights) {
                             currentFlight->getFlightNumber();
                         }
                         cout << "Which flight do you want to edit?" << endl;
                         cin >> str;
+                        for (char &c: str) {
+                            c = std::toupper(c);
+                        }
+
+                        for (auto &currentFlight: collection->flights) {
+                            if (str == currentFlight->getFlightNumber()) {
+
+                            }
+                        }
+
                     }
-                }
 
-
-                cout << "Which airport would you like to manage " << endl;
-                for (auto *currentAirport: collection->airports) {
-                    cout << currentAirport->getAirportName() << "   " << currentAirport->getCallSign() << endl;
+                    delete tempFlight;
                 }
-                cout << "Enter Airport Abbreviation: ";
-                cin >> str;
 
 
                 break;
 
 
             case 'c':
-            case 'C': // Exit
+            case 'C': // Manage Crew
+                cout << "Managing crew!" << endl;
+
+
+                break;
+            case 'd':
+            case 'D': //Exit
             {
                 ofstream fout("AirportData.dat");
 

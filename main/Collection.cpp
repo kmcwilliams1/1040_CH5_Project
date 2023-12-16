@@ -103,7 +103,6 @@ void Collection::readFlightProperties(const string &basicString) {
     {
         counter = stoi(temp);
     }
-    cout << endl << endl;
     for (int i = 0; i < counter; i++) {
 
         string arrivalCity, departureCity;
