@@ -10,7 +10,6 @@ Attendant::Attendant() = default;
 Attendant::~Attendant() = default;
 
 void Attendant::readAttendantProperties(const string &basicString, Collection *collection) {
-    cout << "Basic String: " << basicString << endl;
     istringstream dataStream(basicString);
     string temp;
     int counter;
@@ -19,11 +18,9 @@ void Attendant::readAttendantProperties(const string &basicString, Collection *c
     getline(dataStream, temp, ',');
     {
         name = temp;
-        cout << "Name: " << name << endl;
     }
     getline(dataStream, temp, ',');
     {
-        cout << "temp: " << temp << endl;
         employeeID = stoi(temp);
     }
 
@@ -35,7 +32,6 @@ void Attendant::readAttendantProperties(const string &basicString, Collection *c
     {
         counter = stoi(temp);
     }
-    cout << "assignedFlightPair counter: " << counter << endl;
     for (int i = 0; i < counter; i++) {
         getline(dataStream, temp, ')');
 
@@ -53,19 +49,17 @@ void Attendant::readAttendantProperties(const string &basicString, Collection *c
 
         flightNumber = temp.substr(commaPos + 1, temp.length() - commaPos - 1);
 
-        cout << "Leg " << leg << " flightNumber " << flightNumber << endl;
 
         for (auto &flight: collection->flights) {
             if (flight->getFlightNumber() == flightNumber) {
                 currentFlight = flight;
-                cout << "Flight " << flight->getFlightNumber() << endl;
                 break;
             }
         }
 
 
         if (currentFlight != nullptr) {
-             setAssignedFlightPair(stoi(leg), currentFlight);
+            setAssignedFlightPair(stoi(leg), currentFlight);
         } else {
             cerr << "No matching flight found for leg " << leg << " with flight number " << flightNumber << endl;
         }
@@ -82,7 +76,6 @@ void Attendant::readAttendantProperties(const string &basicString, Collection *c
     {
         counter = stoi(temp);
     }
-    cout << "FlightAssignment counter " << counter << endl;
     for (int i = 0; i < counter; i++) {
         getline(dataStream, temp, ')');
 
@@ -93,9 +86,8 @@ void Attendant::readAttendantProperties(const string &basicString, Collection *c
             arrivalCity = temp.substr(openParenPos + 1, commaPos - openParenPos - 1);
             departureCity = temp.substr(commaPos + 1, temp.length() - commaPos - 1);
 
-            cout << "Arrival City: " << arrivalCity << " Departure City: " << departureCity << endl;
 
-              addFlightAssignment(i + 1, departureCity, arrivalCity);
+            addFlightAssignment(i + 1, departureCity, arrivalCity);
         } else {
             cerr << "Invalid format for city information in line: " << temp << endl;
         }
@@ -109,7 +101,6 @@ void Attendant::readAttendantProperties(const string &basicString, Collection *c
     {
         counter = stoi(temp);
     }
-    cout << "subClassMap size: " << counter << endl;
     for (int i = 0; i < counter; i++) {
         getline(dataStream, temp, ')');
 
@@ -120,11 +111,10 @@ void Attendant::readAttendantProperties(const string &basicString, Collection *c
             position = temp.substr(openParenPos + 1, commaPos - openParenPos - 1);
             flightNumber = temp.substr(commaPos + 1, temp.length() - commaPos - 1);
 
-            cout << "Position: " << position << " Flight Number: " << flightNumber << endl;
 
             ServicePosition newPosition = servicePositionFromString(position);
 
-              addAssignedFlight(newPosition, flightNumber);
+            addAssignedFlight(newPosition, flightNumber);
         } else {
             cerr << "Invalid format for assignedFlightsMap in line: " << temp << endl;
         }
@@ -138,7 +128,6 @@ void Attendant::readAttendantProperties(const string &basicString, Collection *c
     {
         counter = stoi(temp);
     }
-    cout << "uniqueDestinations size: " << counter << endl;
 
     for (int i = 0; i < counter; i++) {
         getline(dataStream, temp, ',');

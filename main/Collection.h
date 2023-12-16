@@ -14,7 +14,7 @@ public:
     vector<Flight *> flights;
 
 
-    void readAirportProperties(const string &basicString);
+    void readAirportProperties(const string &basicString, Collection *collection);
 
     void readCrewProperties(const string &basicString, Collection *collection);
 
@@ -27,6 +27,9 @@ public:
     void writeFlightProperties(ostream &dataFile);
 
 
+    void addNewFlight();
+    void addNewAirport();
+    void addNewCrew();
 };
 
 

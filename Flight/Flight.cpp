@@ -171,6 +171,10 @@ void Flight::setDepartureAndArrivalCities(const string &departureCity, const str
 }
 
 vector<pair<string, string>> Flight::getDepartureAndArrivalCities() const {
+    return departureAndArrivalCities;
+}
+
+vector<pair<string, string>> Flight::printDepartureAndArrivalCities() const {
     vector<pair<string, string>> cities;
 
     cities.reserve(departureAndArrivalCities.size());

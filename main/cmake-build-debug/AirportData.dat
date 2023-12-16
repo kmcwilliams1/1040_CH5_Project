@@ -1,22 +1,37 @@
-#Airport Data - airportName,callSign,numberOfGates,listOfFlights,flightPair,
-Los Angeles International Airport,LAX,10,7,ABC123,DEF456,GHI789,JKL901,MNO234,UVW456,XYZ789,3,(LAX,SFO),(LAX,DAL),(LAX,PHO),
-San Francisco International Airport,SFO,12,4,TYH795,POW897,FRT431,MYT759,2,(SFO,JFK),(SFO,HOU),
-New York International Airport,JFK,15,5,JKL901,PQR567,STU890,VWX123,YZA456,3,(JFK,LAX),(JFK,SFO),(JFK,MIA),
-Chicago O'Hare International Airport,ORD,8,3,DEF456,GHI789,JKL901,3,(ORD,SFO),(ORD,LAX),(ORD,ATL),
-Dallas/Fort Worth International Airport,DFW,12,3,GHI789,MNO234,UVW456,3,(DFW,SFO),(DFW,PDX),(DFW,MIA),
-Miami International Airport,MIA,10,3,MNO234,UVW456,XYZ789,3,(MIA,ORD),(MIA,LAX),(MIA,HNL),
 
+
+#TODO: 3,(gate and unique destination should be a pair, or a struct with arrive/depart times)(times should be staggered to uniqueDestinations.size()-1),(isFueled and other maintenance things should be done in a struct),
 #Flight Data - flightNumber,gate,passengerCount,seatCount,isFueled,departureTime,arrivalTime,listOfCrewMembers,maintenanceRequests,departureAndArrivalCities,flightDetailsMap,uniqueDestinations
-ABC123,A1,150,200,true,1641578400,1641592800,3,12345,54321,13579,3,(1040: Fix paneling on left wing, Check windshield, Check Brakes),(1041: Check Tire Pressure),(1042: Broken Tail Light),2,(LAX,SFO),(SFO,JFK),2,(1:No Update),(2:High Wind SSW, Altitude 45000 ft),4,LAX, SFO, JFK, DAL
-DEF456,A2,180,220,true,1641578400,1641592800,3,12346,54322,13580,2,(1043: Check Engine, Refuel),(1045: Clean Cabin),2,(SFO,ORD),(ORD,MIA),2,(3:No Update),(4:Clear Skies, Altitude 38000 ft),4,SFO, ORD, MIA, LGA
-GHI789,B3,200,250,true,1641578400,1641592800,3,12347,54323,13581,2,(1046: Check Avionics),(1047: Replace Oxygen Masks, Inspect Landing Gear),2,(JFK,LAX),(LAX,HNL),2,(5:No Update),(6:Turbulence Expected, Altitude 40000 ft),4,JFK, LAX, HNL, ANC
-JKL901,C4,220,270,true,1641578400,1641592800,3,12348,54324,13582,1,(1049: Check Navigation System, Test Autopilot),2,(MIA,DFW),(DFW,SEA),2,(7:No Update),(8:Cloudy Skies, Altitude 35000 ft),4,MIA, DFW, SEA, PDX
-MNO234,D5,240,290,true,1641578400,1641592800,3,12349,54325,13583,2,(1052: Inspect Cabin Lights),(1053: Check Hydraulics, Replace Seat Belts),2,(ORD,LGA),(LGA,SFO),2,(9:No Update),(10:Thunderstorms Expected, Altitude 32000 ft),4,ORD, LGA, SFO, LAS
-PQR567,E6,260,310,true,1641578400,1641592800,3,12350,54326,13584,3,(1055: Check Ailerons),(1056: Refuel),(1057: Inspect Flaps),2,(SEA,ANC),(ANC,ATL),2,(11:No Update),(12:Clear Skies, Altitude 36000 ft),4,SEA, ANC, ATL, IAH
-XYZ789,F7,280,330,true,1641578400,1641592800,3,12351,54327,13585,1,(1058: Check Rudder, Clean Windshield, Test Emergency Exits),2,(DFW,PDX),(PDX,BOS),2,(13:No Update),(14:Windy Conditions, Altitude 41000 ft),4,DFW, PDX, BOS, ORD
+ABC123,A1,150,200,true,1641578400,1641592800,3,12345,54321,13579,3,(1040: Fix paneling on the left wing, Check windshield, Check Brakes),(1041: Check Tire Pressure),(1042: Broken Tail Light),2,(LAX,SFO),(SFO,JFK),2,(1:No Update),(2:High Wind SSW, Altitude 45000 ft),4,LAX, SFO, JFK, DAL,
+DEF456,A2,180,220,true,1641578400,1641592800,3,12346,54322,13580,2,(1043: Check Engine, Refuel),(1045: Clean Cabin),2,(SFO,ORD),(ORD,MIA),2,(3:No Update),(4:Clear Skies, Altitude 38000 ft),4,SFO, ORD, MIA, LGA,
+GHI789,B3,200,250,true,1641578400,1641592800,3,12347,54323,13581,2,(1046: Check Avionics),(1047: Replace Oxygen Masks, Inspect Landing Gear),2,(JFK,LAX),(LAX,HNL),2,(5:No Update),(6:Turbulence Expected, Altitude 40000 ft),4,JFK, LAX, HNL, ANC,
+JKL901,C4,220,270,true,1641578400,1641592800,3,12348,54324,13582,1,(1049: Check Navigation System, Test Autopilot),2,(MIA,DFW),(DFW,SEA),2,(7:No Update),(8:Cloudy Skies, Altitude 35000 ft),4,MIA, DFW, SEA, PDX,
+MNO234,D5,240,290,true,1641578400,1641592800,3,12349,54325,13583,2,(1052: Inspect Cabin Lights),(1053: Check Hydraulics, Replace Seat Belts),3,(ORD,LGA),(LGA,SFO),(SFO,LAX),2,(9:No Update),(10:Thunderstorms Expected, Altitude 32000 ft),4,ORD, LGA, SFO, LAS,
+PQR567,E6,260,310,true,1641578400,1641592800,3,12350,54326,13584,3,(1055: Check Ailerons),(1056: Refuel),(1057: Inspect Flaps),2,(SEA,ANC),(ANC,ATL),2,(11:No Update),(12:Clear Skies, Altitude 36000 ft),4,SEA, ANC, ATL, IAH,
+XYZ789,F7,280,330,true,1641578400,1641592800,3,12351,54327,13585,1,(1058: Check Rudder, Clean Windshield, Test Emergency Exits),2,(DFW,PDX),(PDX,BOS),2,(13:No Update),(14:Windy Conditions, Altitude 41000 ft),4,DFW, PDX, BOS, ORD,
+UVW456,F8,200,250,true,1641578400,1641592800,3,12352,54328,13586,2,(1059: Check Fuselage, Refuel),(1060: Clean Windows),2,(ATL,MIA),(MIA,LAX),2,(15:No Update),(16:Light Rain, Altitude 32000 ft),4,ATL, MIA, LAX, SEA,
+TYH795,F9,150,200,true,1641578400,1641592800,3,12353,54329,13587,2,(1061: Check Landing Gear, Refuel),(1062: Clean Interior),2,(LAX,SFO),(SFO,JFK),2,(17:No Update),(18:Sunny Skies, Altitude 38000 ft),4,LAX, SFO, JFK, ORD,
+POW897,G10,170,220,true,1641578400,1641592800,3,12354,54330,13588,2,(1063: Inspect Engines, Check Avionics),(1064: Wipe Down Surfaces),2,(SFO,ORD),(ORD,MIA),2,(19:No Update),(20:Clear Skies, Altitude 42000 ft),4,SFO, ORD, MIA, ATL,
+FRT431,H11,190,240,true,1641578400,1641592800,3,12355,54331,13589,2,(1065: Test Autopilot, Refuel),(1066: Vacuum Floors),2,(JFK,LAX),(LAX,HNL),2,(21:No Update),(22:Turbulence Expected, Altitude 40000 ft),4,JFK, LAX, HNL, LAS,
+MYT759,I12,210,260,true,1641578400,1641592800,3,12356,54332,13590,2,(1067: Check Navigation System),(1068: Clean Windows),2,(MIA,DFW),(DFW,SEA),2,(23:No Update),(24:Cloudy Skies, Altitude 35000 ft),4,MIA, DFW, SEA, ANC,
+STU890,J13,230,280,true,1641578400,1641592800,3,12357,54333,13591,2,(1069: Inspect Cabin Lights),(1070: Check Hydraulics, Replace Seat Belts),2,(ORD,LGA),(LGA,SFO),2,(25:No Update),(26:Thunderstorms Expected, Altitude 32000 ft),4,ORD, LGA, SFO, LAS,
+VWX123,K14,250,300,true,1641578400,1641592800,3,12358,54334,13592,2,(1071: Check Fuselage, Refuel),(1072: Clean Windows),2,(SEA,ANC),(ANC,ATL),2,(27:No Update),(28:Clear Skies, Altitude 36000 ft),4,SEA, ANC, ATL, IAH,
+YZA456,L15,270,320,true,1641578400,1641592800,3,12359,54335,13593,2,(1073: Check Rudder, Clean Windshield, Test Emergency Exits),(1074: Vacuum Floors),2,(DFW,PDX),(PDX,BOS),2,(29:No Update),(30:Windy Conditions, Altitude 41000 ft),4,DFW, PDX, BOS, ORD,
+
+
 
 #Crew Data - CrewType,name,employeeID,assignedFlightPair,FlightAssignments,subClassMap,uniqueDestinations,
 Pilot,John Doe,1001,2,(1,ABC123),(2,DEF456),2,(LAX,SFO),(SFO,JFK),2,(Pilot,ABC123),(CoPilot,DEF456),3,LAX,SFO,JFK,
 Pilot,Bob Johnson,1002,2,(1,JKL901),(2,PQR567),2,(JFK,LAX),(LAX,SFO),2,(Pilot,JKL901),(CoPilot,PQR567),3,JFK,LAX,SFO,
 Attendant,Alice Williams,2002,2,(1,XYZ789),(2,PQR567),2,(DFW,PDX),(PDX,BOS),2,(frontOfPlane,XYZ789),(backOfPlane,PQR567),3,DFW,PDX,BOS
 Attendant,Jane Smith,2001,2,(1,PQR567),(2,MNO234),2,(LAX,SFO),(SFO,MIA),2,(frontOfPlane,PQR567),(backOfPlane,MNO234),3,LAX,SFO,MIA,
+
+
+
+#Airport Data - airportName,callSign,numberOfGates,listOfFlights,
+Los Angeles International Airport,LAX,10,5,ABC123,GHI789,MNO234,UVW456,TYH795,
+San Francisco International Airport,SFO,12,5,TYH795,POW897,FRT431,MYT759,MNO234,
+New York International Airport,JFK,15,6,JKL901,PQR567,STU890,VWX123,YZA456,ABC123,
+Chicago O'Hare International Airport,ORD,8,5,DEF456,GHI789,JKL901,MNO234,XYZ789,
+Dallas/Fort Worth International Airport,DFW,12,5,GHI789,MNO234,UVW456,XYZ789,FRT431,
+Miami International Airport,MIA,10,4,MNO234,UVW456,XYZ789,POW897,

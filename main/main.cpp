@@ -71,7 +71,7 @@ int main() {
         getline(lineStream, role, ',');
 
         if (lastRole == airportSearchWord) {
-            collection->readAirportProperties(readingLine);
+            collection->readAirportProperties(readingLine, collection);
         } else if (lastRole == crewSearchWord) {
             collection->readCrewProperties(readingLine, collection);
         } else if (lastRole == flightSearchWord) {
@@ -87,18 +87,13 @@ int main() {
     cout << "Crew size: " << collection->crew.size() << endl;
 
 
-
-//    airport->enqueueArrivingFlight();
-//    airport->pushDepartingFlightBack();
-
-
     fin.clear();
     fin.seekg(0, ios::beg);
 
     while (true) {
 
 
-        cout << "     ____                  _               ____                             _  \n"
+        cout << "     ____                                  ____                             _  \n"
                 "    / ___|   _ _ __  _ __ (_)_ __   __ _  | __ ) _   _ __________ _ _ __ __| | \n"
                 "   | |  | | | | '_ \\| '_ \\| | '_ \\ / _` | |  _ \\| | | |_  /_  / _` | '__/ _` | \n"
                 "   | |__| |_| | | | | | | | | | | | (_| | | |_) | |_| |/ / / / (_| | | | (_| | \n"
@@ -115,25 +110,43 @@ int main() {
 
 
         cin >> option;
-
+        string str;
         switch (option) {
             case 'A':
             case 'a': // View Flights
             {
                 cout << "Which airport would you like to view " << endl;
                 for (auto *currentAirport: collection->airports) {
-                    cout << currentAirport->getAirportName() << endl;
+                    cout << currentAirport->getAirportName() << "   " << currentAirport->getCallSign() << endl;
+                }
+                cout << "Enter Airport Abbreviation: ";
+                cin >> str;
+                for (char &c: str) {
+                    c = std::toupper(c);
+                }
+//TODO - do the time bit, for now, just do airports
+
+//                cout << "Which day would you like to view? " << endl;
+//                string today = calendar.getToday();
+//                cout << "Today :" << today << ", ";
+//
+//                // Display the next 6 days
+//                for (int i = 1; i <= 6; ++i) {
+//                    int nextDayIndex = (calendar.getDayIndex(today) + i) % 7;
+//                    cout << calendar.daysOfTheWeek[nextDayIndex] << ((i < 6) ? ", " : "\n");
+//                }
+
+
+
+                for (auto &currentAirport: collection->airports) {
+
+                    if (currentAirport->getCallSign() == str) {
+                        cout << "Found Airport: " << currentAirport->getCallSign() << endl;
+                        currentAirport->getFlightsInvolvingThisAirport();
+                        break;
+                    }
                 }
 
-                cout << "Which day would you like to view? " << endl;
-                string today = calendar.getToday();
-                cout << "Today (" << today << "), ";
-
-                // Display the next 6 days
-                for (int i = 1; i <= 6; ++i) {
-                    int nextDayIndex = (calendar.getDayIndex(today) + i) % 7;
-                    cout << calendar.daysOfTheWeek[nextDayIndex] << ((i < 6) ? ", " : "\n");
-                }
 
             }
                 break;
@@ -143,11 +156,35 @@ int main() {
             case 'b': // Manage Flights
 
 
+                cout << "Do you want to create a new flight or update a preexisting one? (C/U) " << endl;
+                cin >> option;
+
+
+                if (option == 'c' || option == 'C') {
+                    collection->addNewFlight();
+                } else if (option == 'u' || option == 'U') {
+                    cout << "Edit from airport or flight list? (A/F) " << endl;
+                    if (option == 'a' || option == 'A') {
+
+
+                    } else if (option == 'F' || option == 'f') {
+                        for (auto &currentFlight: collection->flights) {
+                            currentFlight->getFlightNumber();
+                        }
+                        cout << "Which flight do you want to edit?" << endl;
+                        cin >> str;
+                    }
+                }
+
+
                 cout << "Which airport would you like to manage " << endl;
                 for (auto *currentAirport: collection->airports) {
-                    cout << currentAirport->getAirportName() << endl;
+                    cout << currentAirport->getAirportName() << "   " << currentAirport->getCallSign() << endl;
                 }
-                cout << "Which day would you like to manage? " << endl;
+                cout << "Enter Airport Abbreviation: ";
+                cin >> str;
+
+
                 break;
 
 

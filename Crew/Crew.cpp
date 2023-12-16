@@ -60,7 +60,6 @@ void Crew::clearUniqueDestinations() {
 
 
 void Crew::setAssignedFlightPair(int leg, Flight *flight) {
-    cout << "leg " << leg << " flight " << flight << endl;
     auto newFlightPair = make_pair(leg, flight);
     assignedFlightPairs.push_back(newFlightPair);
 }

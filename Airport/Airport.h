@@ -15,16 +15,14 @@ using namespace std;
 class Airport {
 private:
     // Point 1: List
-    list<Flight> listOfFlights;
+    list<Flight *> listOfFlights;
 
-    // Point 3: Pair
-    pair<string, string> flightPair;
 
     // Point 5: Queue (Arriving Flights)
-    queue<Flight> arrivingFlights;
+    queue<Flight *> arrivingFlights;
 
     // Point 6: Deque (Departing Flights)
-    deque<Flight> departingFlights;
+    deque<Flight *> departingFlights;
 
 
 private:
@@ -33,29 +31,22 @@ private:
     string gate;
     string callSign;
     int numberOfGates;
-    vector<Flight *> flights;
-    vector<string> flightIDs;
 
 public: //7 points of study methods
 
     // Point 1: List
-    void addFlightToList(const string &flightData);
+    void addFlightToList(Flight *flight);
 
     void removeFlightFromList(const string &flightNumber);
 
-    list<Flight> getListOfFlights() const;
+    list<Flight *> getListOfFlights() const;
 
     bool isFlightInList(const string &flightNumber) const;
 
 
-    // Point 3: Pair
-    void setFlightPair(const string &departureCity, const string &arrivalCity);
-
-    pair<string, string> getFlightPair() const;
-
 
     // Point 5: Queue (Arriving Flights)
-    void enqueueArrivingFlight(const Flight &flight);
+    void enqueueArrivingFlight(Flight *flight);
 
     void dequeueArrivingFlight();
 
@@ -66,9 +57,9 @@ public: //7 points of study methods
     void clearArrivingFlights();
 
     // Point 6: Deque (Departing Flights)
-    void pushDepartingFlightFront(const Flight &flight);
+    void pushDepartingFlightFront(Flight *flight);
 
-    void pushDepartingFlightBack(const Flight &flight);
+    void pushDepartingFlightBack(Flight *flight);
 
     void popDepartingFlightFront();
 
@@ -96,17 +87,11 @@ public: //Accessor Mehthods
 
     void setNumberOfGates(int newNumberOfGates);
 
-    vector<Flight *> getFlights() const;
-
-    void setFlights(const vector<Flight *> &newFlights);
-
-    string getFlightIDs() const;
-
-    void setFlightIDs(const string &flightIDs);
+    list<Flight *> getFlightsInvolvingThisAirport() const;
 
     string getCallSign() const;
 
-    void setCallSign(string &basicString);
+    void setCallSign(const string &basicString);
 
     void clearListOfFlights();
 };

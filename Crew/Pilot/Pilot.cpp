@@ -68,7 +68,6 @@ void Pilot::readPilotProperties(const string &basicString, Collection *collectio
         }
     }
 
-    cout << "Well i got it done!" << endl;
 
 
     //FlightAssignments

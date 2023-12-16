@@ -175,6 +175,8 @@ public:
     void addCrewMember(const string &name, Crew::EmployeeType type);
 
     void pushMaintenanceRequest(int id, const vector<string> &requestDescriptions);
+
+    vector<pair<string, string>> printDepartureAndArrivalCities() const;
 };
 
 #endif //INC_1040_CH5_PRACTICEPROJECT_FLIGHT_H

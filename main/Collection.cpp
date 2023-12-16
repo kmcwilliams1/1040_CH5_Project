@@ -153,9 +153,6 @@ void Collection::readFlightProperties(const string &basicString) {
     }
 
 
-
-
-
     for (int i = 0; i < counter; i++) {
         string destination;
         getline(dataStream, destination, ',');
@@ -197,7 +194,6 @@ void Collection::readCrewProperties(const string &basicString, Collection *colle
             }
             case 2: {
                 auto *attendant = new Attendant;
-                cout << "Attendant ready to read! " << endl;
                 attendant->readAttendantProperties(basicString, collection);
                 crew.push_back(attendant);
                 break;
@@ -210,7 +206,7 @@ void Collection::readCrewProperties(const string &basicString, Collection *colle
 
 }
 
-void Collection::readAirportProperties(const string &basicString) {
+void Collection::readAirportProperties(const string &basicString, Collection *collection) {
 
     istringstream dataStream(basicString);
     string temp;
@@ -231,40 +227,56 @@ void Collection::readAirportProperties(const string &basicString) {
     {
         airport->setNumberOfGates(stoi(temp));
     }
+
+
+    //listOfFlights
     getline(dataStream, temp, ',');
     {
         counter = stoi(temp);
     }
     for (int i = 0; i < counter; i++) {
         getline(dataStream, temp, ',');
-        {
-            airport->setFlightIDs(temp);
+
+        // Remove leading and trailing whitespaces from the flight name
+        temp.erase(remove_if(temp.begin(), temp.end(), ::isspace), temp.end());
+
+        if (!temp.empty()) {
+            Flight *currentFlight = nullptr;
+            const string& flightName = temp;
+
+            for (auto &flight: collection->flights) {
+                if (flight->getFlightNumber() == flightName) {
+                    currentFlight = flight;
+                    break;
+                }
+            }
+
+            if (currentFlight) {
+                airport->addFlightToList(currentFlight);
+                airport->enqueueArrivingFlight(currentFlight);
+                airport->pushDepartingFlightBack(currentFlight);
+            } else {
+                cerr << "No matching flight found for currentFlight " << flightName << endl;
+            }
         }
     }
-    getline(dataStream, temp, ',');
-    {
-        counter = stoi(temp);
-    }
 
-    for (int i = 0; i < counter; i++) {
 
-        string arrivalCity, departureCity;
-        getline(dataStream, temp, ',');
-        {
-            size_t openParenPos = temp.find('(');
-            departureCity = temp.substr(openParenPos + 1, temp.length());
 
-        }
 
-        getline(dataStream, temp, ',');
-        {
-            size_t closeParenPos = temp.find(')');
-            arrivalCity = temp.substr(0, closeParenPos);
-        }
-        airport->setFlightPair(departureCity, arrivalCity);
-
-    }
 
     airports.push_back(airport);
+
+}
+
+void Collection::addNewFlight() {
+
+}
+
+void Collection::addNewCrew() {
+
+}
+
+void Collection::addNewAirport() {
 
 }
