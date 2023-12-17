@@ -3,15 +3,15 @@
 #include <algorithm>
 #include "Collection.h"
 
-void Collection::writeFlightProperties(ostream &dataFile) {
+void Collection::writeFlightProperties(ostream &dataFile, Flight *currentFlight) {
 
 }
 
-void Collection::writeCrewProperties(ostream &dataFile) {
+void Collection::writeCrewProperties(ostream &dataFile, Crew *currentCrew) {
 
 }
 
-void Collection::writeAirportProperties(ostream &dataFile) {
+void Collection::writeAirportProperties(ostream &dataFile, Airport *currentAirport) {
 
 }
 
@@ -268,14 +268,27 @@ void Collection::readAirportProperties(const string &basicString, Collection *co
 
 }
 
-void Collection::addNewFlight() {
+void Collection::addNewFlight(Flight *pFlight) {
 
 }
 
-void Collection::addNewCrew() {
+void Collection::addNewCrew(Crew *pCrew) {
 
 }
 
-void Collection::addNewAirport() {
+void Collection::addNewAirport(Airport *pAirport) {
+
+}
+
+
+void Collection::deleteAirport(Airport *pAirport) {
+
+}
+
+void Collection::deleteFlight(Flight *pFlight) {
+
+}
+
+void Collection::deleteCrew(Crew *pCrew) {
 
 }

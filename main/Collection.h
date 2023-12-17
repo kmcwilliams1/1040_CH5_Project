@@ -20,16 +20,21 @@ public:
 
     void readFlightProperties(const string &basicString);
 
-    void writeAirportProperties(ostream &dataFile);
+    void writeAirportProperties(ostream &dataFile, Airport *currentAirport);
 
-    void writeCrewProperties(ostream &dataFile);
+    void writeCrewProperties(ostream &dataFile, Crew *currentCrew);
 
-    void writeFlightProperties(ostream &dataFile);
+    void writeFlightProperties(ostream &dataFile, Flight *currentFlight);
 
 
-    void addNewFlight();
-    void addNewAirport();
-    void addNewCrew();
+    void addNewFlight(Flight *flight);
+    void addNewAirport(Airport *airport);
+    void addNewCrew(Crew *crew);
+
+
+    void deleteAirport(Airport *pAirport);
+    void deleteFlight(Flight *pFlight);
+    void deleteCrew(Crew *pCrew);
 };
 
 

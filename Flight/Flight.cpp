@@ -353,6 +353,12 @@ void Flight::setCrewIDs(int crewID) {
 
 vector<int> Flight::getCrewIDs() const {
     return crewIDs;
+}
+
+void Flight::updateFlight() {
+    cout << "TEEHEE" << endl;
+
+
 };
 
 

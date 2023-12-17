@@ -94,6 +94,10 @@ public: //Accessor Mehthods
     void setCallSign(const string &basicString);
 
     void clearListOfFlights();
+
+    void manageFlights() const;
+
+    void setAirport();
 };
 
 #endif //INC_1040_CH5_PRACTICEPROJECT_AIRPORT_H

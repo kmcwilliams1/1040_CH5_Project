@@ -10,6 +10,7 @@
 #include <queue>
 #include <utility>
 #include <string>
+#include <iostream>
 #include "../Crew/Pilot/Pilot.h"
 #include "../Crew/Attendant/Attendant.h"
 
@@ -177,6 +178,8 @@ public:
     void pushMaintenanceRequest(int id, const vector<string> &requestDescriptions);
 
     vector<pair<string, string>> printDepartureAndArrivalCities() const;
+
+    void updateFlight();
 };
 
 #endif //INC_1040_CH5_PRACTICEPROJECT_FLIGHT_H

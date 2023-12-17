@@ -159,3 +159,27 @@ string Airport::getCallSign() const {
     return callSign;
 }
 
+void Airport::manageFlights() const {
+
+    string str;
+    auto *tempFlight = new Flight();
+    getFlightsInvolvingThisAirport();
+    cout << "Which flight would you like to manage? " << endl;
+    cin >> str;
+    for (char &c: str) {
+        c = std::toupper(c);
+    }
+
+    for (auto *currentFlight: getListOfFlights()) {
+        if (currentFlight->getFlightNumber() == str) {
+            tempFlight = currentFlight;
+        }
+    }
+
+    tempFlight->updateFlight();
+}
+
+void Airport::setAirport() {
+
+}
+
