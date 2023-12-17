@@ -77,6 +77,10 @@ public: // Getter and Setter Methods
     void clearUniqueDestinations();
 
     void printUniqueDestinations() const;
+
+    void printInfo();
+
+    void updateCrew();
 };
 
 #endif //INC_1040_CH5_PRACTICEPROJECT_CREW_H

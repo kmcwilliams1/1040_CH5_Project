@@ -88,4 +88,12 @@ void Crew::addFlightAssignment(int leg, const string &departureCity, const strin
     flightAssignments.push_back(assignment);
 }
 
+void Crew::printInfo() {
+
+}
+
+void Crew::updateCrew() {
+
+}
+
 

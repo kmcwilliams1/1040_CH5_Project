@@ -241,7 +241,7 @@ void Collection::readAirportProperties(const string &basicString, Collection *co
 
         if (!temp.empty()) {
             Flight *currentFlight = nullptr;
-            const string& flightName = temp;
+            const string &flightName = temp;
 
             for (auto &flight: collection->flights) {
                 if (flight->getFlightNumber() == flightName) {
@@ -261,9 +261,6 @@ void Collection::readAirportProperties(const string &basicString, Collection *co
     }
 
 
-
-
-
     airports.push_back(airport);
 
 }
@@ -277,14 +274,18 @@ void Collection::addNewCrew(Crew *pCrew) {
 }
 
 void Collection::addNewAirport(Airport *pAirport) {
+    cout << "Hello mrs lady " << endl;
 
 }
 
 
 void Collection::deleteAirport(Airport *pAirport) {
-
+    auto it = find(airports.begin(), airports.end(), pAirport);
+    if (it != airports.end()) {
+        airports.erase(it);
+        delete *it;
+    }
 }
-
 void Collection::deleteFlight(Flight *pFlight) {
 
 }

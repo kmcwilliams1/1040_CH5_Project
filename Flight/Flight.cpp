@@ -359,6 +359,10 @@ void Flight::updateFlight() {
     cout << "TEEHEE" << endl;
 
 
+}
+
+void Flight::printInfo() {
+
 };
 
 

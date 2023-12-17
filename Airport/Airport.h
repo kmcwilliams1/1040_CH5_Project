@@ -9,9 +9,10 @@
 #include <utility>
 #include <vector>
 #include "../Flight/Flight.h"
+#include "../main/Collection.h"
 
 using namespace std;
-
+class Collection;
 class Airport {
 private:
     // Point 1: List
@@ -33,6 +34,8 @@ private:
     int numberOfGates;
 
 public: //7 points of study methods
+
+    void printInfo() const;
 
     // Point 1: List
     void addFlightToList(Flight *flight);
@@ -95,9 +98,11 @@ public: //Accessor Mehthods
 
     void clearListOfFlights();
 
-    void manageFlights() const;
+    void manageFlights(Collection *collection) const;
 
     void setAirport();
+
+    void manageCrew(Collection *pCollection);
 };
 
 #endif //INC_1040_CH5_PRACTICEPROJECT_AIRPORT_H

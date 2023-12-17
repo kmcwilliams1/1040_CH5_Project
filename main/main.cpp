@@ -129,6 +129,7 @@ int main() {
         switch (option) {
             case 'A':
             case 'a': // manage airport
+
             {
 
                 auto *tempAirport = new Airport();
@@ -137,8 +138,7 @@ int main() {
                 for (auto *currentAirport: collection->airports) {
                     cout << currentAirport->getAirportName() << " - " << currentAirport->getCallSign() << endl;
                 }
-
-
+                cout << "Creat new Airport - NEW" << endl;
                 cout << "Enter Airport Abbreviation:   ";
                 cin >> str;
                 for (char &c: str) {
@@ -146,17 +146,26 @@ int main() {
                 }
 
 
+                if (str == "NEW") {
+                    collection->addNewAirport(tempAirport);
+                    break;
+                }
                 for (auto &currentAirport: collection->airports) {
                     if (currentAirport->getCallSign() == str) {
                         cout << "\n";
                         tempAirport = currentAirport;
-                        break;
                     }
+
                 }
 
 
+                cout << "What would you like to do?" << endl;
+                cout << "View info about this airport: A" << endl;
+                cout << "Update this airport:          B" << endl;
+                cout << "Delete this airport:          C" << endl;
+                cin >> option;
                 switch (option) {
-                    cout << "What would you like to do?" << endl;
+
 
                     case 'A':
                     case 'a': // view airport
@@ -165,13 +174,7 @@ int main() {
                         break;
                     }
                     case 'B':
-                    case 'b': // create airport
-                    {
-                        collection->addNewAirport(tempAirport);
-                        break;
-                    }
-                    case 'D':
-                    case 'd': // updated airport
+                    case 'b': // update airport
                     {
                         tempAirport->setAirport();
                         break;
@@ -197,98 +200,259 @@ int main() {
 
             {
 
-                auto *tempFlight = new Flight();
+                cout << "What do you want to do?" << endl;
+                cout << "View all flights:      A" << endl;
+                cout << "Create new flight:     B" << endl;
+                cout << "Examine single flight: C" << endl;
 
-                cout << "Edit from airport or flight list? (A/F) " << endl;
+
                 cin >> option;
-                if (option == 'a' || option == 'A') {
-                    auto *tempAirport = new Airport();
-
-                    cout << "Which airport contains the flight " << endl;
-                    for (auto *currentAirport: collection->airports) {
-                        cout << currentAirport->getAirportName() << "   " << currentAirport->getCallSign()
-                             << endl;
-                    }
-
-                    cout << "Enter Airport Abbreviation: ";
-                    cin >> str;
-                    for (char &c: str) {
-                        c = static_cast<char>(std::toupper(static_cast<unsigned char>(c)));
-                    }
-
-                    for (auto &currentAirport: collection->airports) {
-                        if (currentAirport->getCallSign() == str) {
-                            tempAirport = currentAirport;
-                            break;
-                        }
-                    }
-                } else if (option == 'F' || option == 'f') {
-
-
-                    cout << "Flights: " << endl;
-                    for (auto &currentFlight: collection->flights) {
-                        cout << currentFlight->getFlightNumber() << endl;
-                    }
-
-                    cout << "Which flight do you want to edit?" << endl;
-                    cin >> str;
-                    for (char &c: str) {
-                        c = static_cast<char>(std::toupper(static_cast<unsigned char>(c)));
-                    }
-                    for (auto &currentFlight: collection->flights) {
-                        if (str == currentFlight->getFlightNumber()) {
-                            tempFlight = currentFlight;
-
-                        }
-                    }
-
-                    tempFlight->updateFlight();
-
-                }
-
-
                 switch (option) {
                     case 'A':
                     case 'a': // view all
                     {
-
+                        //
+                        for (auto &currentFlights: collection->flights) {
+                            cout << currentFlights->getFlightNumber() << endl;
+                        }
                         break;
                     }
                     case 'B':
                     case 'b': // create new
                     {
+                        auto *tempFlight = new Flight();
                         collection->addNewFlight(tempFlight);
                         break;
                     }
                     case 'C':
-                    case 'c': // update existing
+                    case 'c': // Examine existing
                     {
 
+                        auto *tempFlight = new Flight();
 
-                        tempFlight->updateFlight();
+                        cout << "Examine flight from airport or list of all flights? (A/L) " << endl;
+                        cin >> option;
+                        if (option == 'a' || option == 'A') {
+                            auto *tempAirport = new Airport();
+
+                            cout << "Which airport contains the flight " << endl;
+                            for (auto *currentAirport: collection->airports) {
+                                cout << currentAirport->getAirportName() << "   " << currentAirport->getCallSign()
+                                     << endl;
+                            }
+
+                            cout << "Enter Airport Abbreviation: ";
+                            cin >> str;
+                            for (char &c: str) {
+                                c = static_cast<char>(std::toupper(static_cast<unsigned char>(c)));
+                            }
+
+                            for (auto &currentAirport: collection->airports) {
+                                if (currentAirport->getCallSign() == str) {
+                                    tempAirport = currentAirport;
+                                    break;
+                                }
+                            }
+
+
+                            tempAirport->manageFlights(collection);
+                            delete tempAirport;
+                        } else if (option == 'L' || option == 'l') {
+
+
+                            cout << "Flights: " << endl;
+                            for (auto &currentFlight: collection->flights) {
+                                cout << currentFlight->getFlightNumber() << endl;
+                            }
+
+                            cout << "Which flight do you want to examine?" << endl;
+                            cin >> str;
+                            for (char &c: str) {
+                                c = static_cast<char>(std::toupper(static_cast<unsigned char>(c)));
+                            }
+                            for (auto &currentFlight: collection->flights) {
+                                if (str == currentFlight->getFlightNumber()) {
+                                    tempFlight = currentFlight;
+
+                                }
+                            }
+
+                            cout << "What would you like to do to this flight?" << endl;
+                            cout << "View in detail:      A" << endl;
+                            cout << "Edit this flight:    B" << endl;
+                            cout << "Delete this flight:  C" << endl;
+                            cin >> option;
+
+                            switch (option) {
+                                case 'A':
+                                case 'a': // view flight
+                                {
+                                    tempFlight->printInfo();
+                                    break;
+                                }
+                                case 'B':
+                                case 'b': // edit flight
+                                {
+                                    tempFlight->updateFlight();
+                                    break;
+                                }
+                                case 'D':
+                                case 'd': // delete flight
+                                {
+                                    collection->deleteFlight(tempFlight);
+                                    break;
+                                }
+
+                            }
+
+
+                            delete tempFlight;
+                        }
+
+
                         break;
 
 
                     }
-                    case 'D':
-                    case 'd': // delete flight
-                    {
-                        collection->deleteFlight(tempFlight);
-                        break;
-                    }
-                    default:
+
+                    default: {
                         cout << "Unknown option please try again" << endl;
                         break;
+                    }
                 }
-                delete tempFlight;
+
             }
 
+                break;
             case 'c':
             case 'C': // Manage Crew
-                cout << "Managing crew!" << endl;
+            {
+
+                cout << "What do you want to do?" << endl;
+                cout << "View all crews:      A" << endl;
+                cout << "Create new crew:     B" << endl;
+                cout << "Examine single crew: C" << endl;
 
 
-                break;
+                cin >> option;
+                switch (option) {
+                    case 'A':
+                    case 'a': // view all
+                    {
+                        //
+                        for (auto &currentCrew: collection->crew) {
+                            cout << currentCrew->getName() << endl;
+                        }
+                        break;
+                    }
+                    case 'B':
+                    case 'b': // create new
+                    {
+                        auto *tempCrew = new Crew();
+                        collection->addNewCrew(tempCrew);
+                        break;
+                    }
+                    case 'C':
+                    case 'c': // Examine existing
+                    {
+
+                        auto *tempCrew = new Crew();
+
+                        cout << "Examine Crew from airport or list of all crew? (A/L) " << endl;
+                        cin >> option;
+                        if (option == 'a' || option == 'A') {
+                            auto *tempAirport = new Airport();
+
+                            cout << "Which airport contains the crew " << endl;
+                            for (auto *currentAirport: collection->airports) {
+                                cout << currentAirport->getAirportName() << "   " << currentAirport->getCallSign()
+                                     << endl;
+                            }
+
+                            cout << "Enter Airport Abbreviation: ";
+                            cin >> str;
+                            for (char &c: str) {
+                                c = static_cast<char>(std::toupper(static_cast<unsigned char>(c)));
+                            }
+
+                            for (auto &currentAirport: collection->airports) {
+                                if (currentAirport->getCallSign() == str) {
+                                    tempAirport = currentAirport;
+                                    break;
+                                }
+                            }
+
+
+                            tempAirport->manageCrew(collection);
+                            delete tempAirport;
+                        } else if (option == 'L' || option == 'l') {
+
+
+                            cout << "Crew: " << endl;
+                            for (auto &currentCrew: collection->crew) {
+                                cout << currentCrew->getName() << endl;
+                            }
+
+                            cout << "Which crew do you want to examine?" << endl;
+                            cin >> str;
+                            for (char &c: str) {
+                                c = static_cast<char>(std::toupper(static_cast<unsigned char>(c)));
+                            }
+                            for (auto &currentCrew: collection->crew) {
+                                if (str == currentCrew->getName()) {
+                                    tempCrew = currentCrew;
+                                }
+                            }
+
+                            cout << "What would you like to do to this crew?" << endl;
+                            cout << "View in detail:      A" << endl;
+                            cout << "Edit this crew:    B" << endl;
+                            cout << "Delete this crew:  C" << endl;
+                            cin >> option;
+
+                            switch (option) {
+                                case 'A':
+                                case 'a': // view crew
+                                {
+                                    tempCrew->printInfo();
+                                    break;
+                                }
+                                case 'B':
+                                case 'b': // edit flight
+                                {
+                                    tempCrew->updateCrew();
+                                    break;
+                                }
+                                case 'D':
+                                case 'd': // delete crew
+                                {
+                                    collection->deleteCrew(tempCrew);
+                                    break;
+                                }
+                                default:
+                                    cout << "Unknown option, please try again" << endl;
+                                    break;
+
+                            }
+
+
+                            delete tempCrew;
+                        }
+
+
+                        break;
+
+
+                    }
+
+                    default: {
+                        cout << "Unknown option please try again" << endl;
+                        break;
+                    }
+                }
+
+            }
+
             case 'd':
             case 'D': //Exit
             {

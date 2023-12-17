@@ -180,6 +180,8 @@ public:
     vector<pair<string, string>> printDepartureAndArrivalCities() const;
 
     void updateFlight();
+
+    void printInfo();
 };
 
 #endif //INC_1040_CH5_PRACTICEPROJECT_FLIGHT_H

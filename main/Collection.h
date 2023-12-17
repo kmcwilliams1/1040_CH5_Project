@@ -7,6 +7,7 @@
 #include "../Flight/Flight.h"
 #include "../Airport/Airport.h"
 
+class Airport;
 class Collection {
 public:
     vector<Airport *> airports;
