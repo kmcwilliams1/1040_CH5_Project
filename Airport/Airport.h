@@ -102,7 +102,6 @@ public: //Accessor Mehthods
 
     void setAirport();
 
-    void manageCrew(Collection *pCollection);
 };
 
 #endif //INC_1040_CH5_PRACTICEPROJECT_AIRPORT_H

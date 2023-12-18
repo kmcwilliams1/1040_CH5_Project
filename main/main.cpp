@@ -120,7 +120,7 @@ int main() {
 
         cout << "| ********************************* Main Menu *************************************** |" << endl;
         cout << "| ** A.  Manage Airports  ** |" << "| ** B.  Manage Flights   ** |" << "| ** C.  Manage Crew   ** |"
-             << endl;;
+             << endl;
         cout << "| *********************************************************************************** |" << endl;
 
 
@@ -302,6 +302,8 @@ int main() {
                                     collection->deleteFlight(tempFlight);
                                     break;
                                 }
+                                default:
+                                    cout << "Unknown option please try again." << endl;
 
                             }
 
@@ -383,7 +385,7 @@ int main() {
                             }
 
 
-                            tempAirport->manageCrew(collection);
+                            tempCrew->manageCrew(collection);
                             delete tempAirport;
                         } else if (option == 'L' || option == 'l') {
 
@@ -430,8 +432,10 @@ int main() {
                                     break;
                                 }
                                 default:
+                                {
                                     cout << "Unknown option, please try again" << endl;
                                     break;
+                                }
 
                             }
 

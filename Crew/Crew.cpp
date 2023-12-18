@@ -2,6 +2,7 @@
 #include "Crew.h"
 #include <random>
 #include <iostream>
+#include "../main/Collection.h"
 
 //Random number generator
 //    random_device rd;
@@ -96,4 +97,53 @@ void Crew::updateCrew() {
 
 }
 
+list<Crew *> Crew::getListOfCrew() const {
+    return listOfCrew;
+}
 
+void Crew::manageCrew(Collection *collection) {
+
+    string str;
+    cout << "Which crew would you like to examine? " << endl;
+    cin >> str;
+    for (char &c : str) {
+        c = static_cast<char>(std::toupper(static_cast<unsigned char>(c)));
+    }
+
+    Crew *tempCrew = nullptr;
+
+    for (auto *currentCrew : getListOfCrew()) {
+        if (currentCrew->getName() == str) {
+            tempCrew = currentCrew;
+            break;
+        }
+    }
+
+    if (tempCrew) {
+        cout << "What would you like to do to this crew?" << endl;
+        cout << "View in detail:      A" << endl;
+        cout << "Edit this crew:      B" << endl;
+        cout << "Delete this crew:    C" << endl;
+        char option;
+        cin >> option;
+
+        switch (option) {
+            case 'A':
+            case 'a': // view crew
+                tempCrew->printInfo();
+                break;
+            case 'B':
+            case 'b': // edit crew
+                tempCrew->updateCrew();
+                break;
+            case 'C':
+            case 'c': // delete crew
+                collection->deleteCrew(tempCrew);
+                break;
+            default:
+                cout << "Unknown option. Please try again." << endl;
+        }
+    } else {
+        cout << "Crew not found." << endl;
+    }
+}

@@ -167,7 +167,7 @@
         cout << "Which flight would you like to examine? " << endl;
         cin >> str;
         for (char &c: str) {
-            c = std::toupper(c);
+            c = static_cast<char>(std::toupper(static_cast<unsigned char>(c)));
         }
 
         for (auto *currentFlight: getListOfFlights()) {
@@ -202,6 +202,8 @@
                 collection->deleteFlight(tempFlight);
                 break;
             }
+            default:
+                cout << "Unknown option please try again." << endl;
 
         }
 
@@ -226,7 +228,4 @@
         }
     }
 
-    void Airport::manageCrew(Collection *pCollection) {
-
-    }
 

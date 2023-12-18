@@ -8,6 +8,7 @@
 #include "../Airport/Airport.h"
 
 class Airport;
+class Crew;
 class Collection {
 public:
     vector<Airport *> airports;

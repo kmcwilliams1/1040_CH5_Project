@@ -26,6 +26,8 @@ public:
 
 private:
     // 7 points of study from Chapter 5
+    // Point 1: List
+    list<Crew *> listOfCrew;
 
     // Point 2: Linked List
     list<FlightAssignments> flightAssignments;
@@ -81,6 +83,11 @@ public: // Getter and Setter Methods
     void printInfo();
 
     void updateCrew();
+
+    list<Crew *> getListOfCrew() const;
+
+    void manageCrew(Collection *pCollection);
+
 };
 
 #endif //INC_1040_CH5_PRACTICEPROJECT_CREW_H
