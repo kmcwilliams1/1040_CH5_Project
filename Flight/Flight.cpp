@@ -31,38 +31,9 @@ void Flight::addCrewMember(int employeeID, Crew::EmployeeType type) {
     CrewList crew;
     if (type == Crew::EmployeeType::Pilot) {
         auto *newPilot = new Pilot();
-
-
-        //subClassMap
-
-        cout << "What role? "<< endl;
-        cout << "Pilot:     A" << endl;
-        cout << "Co-Pilot:  B" << endl;
-        cout << "Navigator: C" << endl;
-        char option;
-        cin >> option;
-        switch (option) {
-            case 'A':
-            case 'a':
-                newPilot->addAssignedFlight(Pilot::RoleName::pilot,flightNumber);
-
-                break;
-            case 'B':
-            case 'b':
-
-                break;
-
-            case 'C':
-            case 'c':
-
-                break;
-        }
-
-        crew.pilotList.push_back(newPilot);
+                crew.pilotList.push_back(newPilot);
     } else if (type == Crew::EmployeeType::Attendant) {
         auto *newAttendant = new Attendant();
-
-
         crew.attendantList.push_back(newAttendant);
     }
 

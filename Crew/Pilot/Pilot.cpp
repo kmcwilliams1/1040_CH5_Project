@@ -120,7 +120,7 @@ void Pilot::readPilotProperties(const string &basicString, Collection *collectio
 
             RoleName newRoleName = roleNameFromString(role);
 
-            addAssignedFlight({{newRoleName, flightNumber}});
+            addAssignedFlight(make_pair(newRoleName, flightNumber));
         } else {
             cerr << "Invalid format for RoleName in line: " << temp << endl;
         }
@@ -141,11 +141,11 @@ void Pilot::readPilotProperties(const string &basicString, Collection *collectio
 
 }
 
-void Pilot::addAssignedFlight(const map<RoleName, string> &flight) {
-    assignedFlightsMap.push_back(flight);
+void Pilot::addAssignedFlight(const pair<RoleName, string> &flight) {
+    assignedFlightsMap.emplace_back(flight);
 }
 
-const vector<map<Pilot::RoleName, string>> &Pilot::getAssignedFlights() const {
+const vector<pair<Pilot::RoleName, string>> &Pilot::getAssignedFlights() const {
     return assignedFlightsMap;
 }
 
@@ -211,11 +211,20 @@ void Pilot::addPilotParameters(Collection *collection) {
                     currentAirport->getFlightsInvolvingThisAirport();
                 }
             }
-            cout << "Add pilot to which flight at this airport?" << endl;
+
+            cout << "Which role?" << endl;
+            for (int i = 1; i < static_cast<int>(Pilot::RoleName::navigator); i++) {
+                cout << static_cast<int>(static_cast<Pilot::RoleName>(i)) << ": " << i << endl;
+            }
+            int num;
+            cin >> num;
+
+
+            cout << "Add to which flight at this airport?" << endl;
             cin >> str;
             for (auto &currentFlight: collection->flights) {
                 if (str == currentFlight->getFlightNumber()) {
-                    currentFlight->addCrewMember({{employeeID, Pilot}});
+                    currentFlight->addCrewMember(employeeID, Crew::EmployeeType::Pilot);
                 }
             }
 

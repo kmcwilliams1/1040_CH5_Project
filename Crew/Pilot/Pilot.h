@@ -25,7 +25,7 @@ public:
     };
     RoleName roleName{};
 
-    vector<map<RoleName, string>> assignedFlightsMap;
+    vector<pair<RoleName, string>> assignedFlightsMap;
 
     // Methods
     Pilot();
@@ -36,8 +36,8 @@ public:
     RoleName roleNameFromString(const string &roleStr);
 
     // Public methods for assignedFlightsMap
-    void addAssignedFlight(const map<RoleName, string> &flight);
-    const vector<map<RoleName, string>>& getAssignedFlights() const;
+    void addAssignedFlight(const pair<RoleName, string>& flight);
+    const vector<pair<RoleName, string>>& getAssignedFlights() const;
     void clearAssignedFlights();
 
     void addPilotParameters(Collection *collection);
