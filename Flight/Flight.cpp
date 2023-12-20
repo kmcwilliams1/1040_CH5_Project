@@ -360,7 +360,104 @@ void Flight::updateFlight() {
 
 void Flight::printInfo() {
 
-};
+}
+
+void Flight::addDepartureTime() {
+    struct tm timeInfo{};
+    time_t userTime;
+    int month, day, hour, minute;
+    char inputChar;
+
+    cout << "What is the departure time?" << endl;
+    cout << "Is it this month (Y/N): ";
+    cin >> inputChar;
+
+    while (inputChar != 'Y' && inputChar != 'y' && inputChar != 'N' && inputChar != 'n') {
+        cout << "Invalid input. Please enter 'Y' or 'N': ";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin >> inputChar;
+    }
+
+    if (inputChar == 'N' || inputChar == 'n') {
+        cout << "Enter month (1-12): ";
+        cin >> month;
+
+        while (month < 1 || month > 12) {
+            cout << "Invalid input. Please enter a month between 1 and 12: ";
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cin >> month;
+        }
+    }
+
+    cout << "Enter Day: ";
+    cin >> day;
+
+    while (day < 1 || day > 31) {
+        cout << "Invalid input. Please enter a day between 1 and 31: ";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin >> day;
+    }
+
+    cout << "Pickup Hour (0-23): ";
+    cin >> hour;
+
+    while (hour < 0 || hour > 23) {
+        cout << "Invalid input. Please enter an hour between 0 and 23: ";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin >> hour;
+    }
+
+    cout << "Pickup Minute (0-59): ";
+    cin >> minute;
+
+    while (minute < 0 || minute > 59) {
+        cout << "Invalid input. Please enter a minute between 0 and 59: ";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin >> minute;
+    }
+
+    cout << endl;
+
+    int hours, minutes;
+    cout << "Enter the duration of the flight:" << endl;
+    cout << "Hours: ";
+    cin >> hours;
+    cout << "Minutes: ";
+    cin >> minutes;
+
+    // Calculate the arrival time
+    arrivalTime = departureTime + (hours * 3600) + (minutes * 60);
+    setArrivalTime(arrivalTime);
+
+    time_t now;
+    time(&now);
+    timeInfo = *localtime(&now);
+
+    /* Previous months are 'next year', so add +1 to the year */
+    if (inputChar == 'N' || inputChar == 'n') {
+        if (month < timeInfo.tm_mon + 1) {
+            timeInfo.tm_year++;
+        }
+        timeInfo.tm_mon = month - 1;
+    }
+
+    timeInfo.tm_mday = day;
+    timeInfo.tm_hour = hour;
+    timeInfo.tm_min = minute;
+    timeInfo.tm_sec = 0;
+    timeInfo.tm_isdst = -1;
+
+    userTime = mktime(&timeInfo);
+    departureTime = userTime;
+
+
+}
+
 
 
 Flight::Flight() = default;

@@ -181,6 +181,8 @@ public:
     void updateFlight();
 
     void printInfo();
+
+    void addDepartureTime();
 };
 
 #endif //INC_1040_CH5_PRACTICEPROJECT_FLIGHT_H

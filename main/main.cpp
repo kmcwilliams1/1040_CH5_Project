@@ -48,12 +48,14 @@ struct Time {
 
 int main() {
 
-    auto *airport = new Airport();
-    auto *crew = new Crew();
-    auto *flight = new Flight();
 
 
-    auto *collection = new Collection();
+    auto airport = new Airport();
+    auto crew = new Crew();
+    auto flight = new Flight();
+
+
+    auto collection = new Collection();
     Time calendar;
     ifstream fin("AirportData.dat");
 
@@ -65,7 +67,7 @@ int main() {
 
     string readingLine;
     string role;
-    char option;
+    char option = 'a';
     string crewSearchWord = "#Crew";
     string airportSearchWord = "#Airport";
     string flightSearchWord = "#Flight";
@@ -85,10 +87,12 @@ int main() {
         getline(lineStream, role, ',');
 
         if (lastRole == airportSearchWord) {
+
             collection->readAirportProperties(readingLine, collection);
         } else if (lastRole == crewSearchWord) {
             collection->readCrewProperties(readingLine, collection);
         } else if (lastRole == flightSearchWord) {
+
             collection->readFlightProperties(readingLine);
         }
 
@@ -154,7 +158,7 @@ int main() {
                         cout << "new airport: " << tempAirport->getAirportName() << endl;
                         delete tempAirport;
                         break;
-                    };
+                    }
 
                     case 'C':
                     case 'c': // examine single airport

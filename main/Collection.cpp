@@ -42,13 +42,6 @@ void Collection::readFlightProperties(const string &basicString) {
     };
     getline(dataStream, temp, ',');
     {
-        bool fueled = true;
-        (temp == "true") ? fueled = true : fueled = false;
-        flight->setIsFueled(fueled);
-        flight->setIsFueled(fueled);
-    };
-    getline(dataStream, temp, ',');
-    {
         flight->setDepartureTime(temp);
     };
     getline(dataStream, temp, ',');
@@ -56,10 +49,12 @@ void Collection::readFlightProperties(const string &basicString) {
         time_t timestamp = stoi(temp);
         flight->setArrivalTime(timestamp);
     };
+
     getline(dataStream, temp, ',');
     {
         counter = stoi(temp);
     }
+
     for (int i = 0; i < counter; i++) {
         getline(dataStream, temp, ',');
         {
@@ -71,6 +66,7 @@ void Collection::readFlightProperties(const string &basicString) {
     {
         counter = stoi(temp);
     }
+
     for (int i = 0; i < counter; i++) {
         getline(dataStream, temp, ')');
 
@@ -104,6 +100,7 @@ void Collection::readFlightProperties(const string &basicString) {
     {
         counter = stoi(temp);
     }
+
     for (int i = 0; i < counter; i++) {
 
         string arrivalCity, departureCity;
@@ -268,7 +265,60 @@ void Collection::readAirportProperties(const string &basicString, Collection *co
 
 void Collection::addNewFlight(Flight *pFlight) {
 
+    cout << "What is the flight number?" << endl;
+    string flightNumber;
+    cin >> flightNumber;
+    pFlight->setFlightNumber(flightNumber);
+
+    cin.ignore();
+
+    cout << "Available Airports:" << endl;
+    for (auto &currentAirport: airports) {
+        cout << currentAirport->getAirportName() << " (" << currentAirport->getCallSign() << ")" << endl;
+    }
+
+    cout << "What is the starting airport (by call sign)?" << endl;
+    string departureCity;
+    cin >> departureCity;
+
+    bool validDepartureCity = false;
+    for (auto &currentAirport: airports) {
+        if (currentAirport->getCallSign() == departureCity) {
+            validDepartureCity = true;
+            break;
+        }
+    }
+
+    if (!validDepartureCity) {
+        cout << "Invalid departure city. Please enter a valid call sign." << endl;
+        return;
+    }
+
+    cout << "What is the destination airport (by call sign)?" << endl;
+    string arrivalCity;
+    cin >> arrivalCity;
+
+    bool validArrivalCity = false;
+    for (auto &currentAirport: airports) {
+        if (currentAirport->getCallSign() == arrivalCity) {
+            validArrivalCity = true;
+            break;
+        }
+    }
+
+    if (!validArrivalCity) {
+        cout << "Invalid arrival city. Please enter a valid call sign." << endl;
+        return;
+    }
+
+    pFlight->setDepartureAndArrivalCities(departureCity, arrivalCity);
+
+    cin.ignore();
+    pFlight->addDepartureTime();
+
+    flights.push_back(pFlight);
 }
+
 
 void Collection::addNewCrew() {
 
