@@ -34,6 +34,8 @@ public:
     void addAssignedFlight(ServicePosition position, const string &flight);
     const map<ServicePosition, string>& getAssignedFlights() const;
     void clearAssignedFlights();
+
+    void addAttendantParameters();
 };
 
 #endif //INC_1040_CH5_PRACTICEPROJECT_ATTENDANT_H

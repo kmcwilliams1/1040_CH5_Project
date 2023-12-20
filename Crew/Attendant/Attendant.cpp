@@ -160,3 +160,7 @@ const map<Attendant::ServicePosition, string> &Attendant::getAssignedFlights() c
 void Attendant::clearAssignedFlights() {
     assignedFlightsMap.clear();
 }
+
+void Attendant::addAttendantParameters() {
+
+}

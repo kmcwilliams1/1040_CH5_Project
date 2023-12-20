@@ -31,7 +31,7 @@ public:
 
     void addNewFlight(Flight *flight);
     void addNewAirport(Airport *airport);
-    void addNewCrew(Crew *crew);
+    void addNewCrew();
 
 
     void deleteAirport(Airport *pAirport);

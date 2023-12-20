@@ -1,15 +1,10 @@
 
 #include "Crew.h"
-#include <random>
 #include <iostream>
 #include "../main/Collection.h"
 
 //Random number generator
-//    random_device rd;
-//    mt19937 generator(rd());
-//    uniform_int_distribution<int> distribution(1, 20000);
-//    int random_number = distribution(generator);
-//    employeeID = random_number;
+
 
 
 void Crew::setName(const string &basicString) {

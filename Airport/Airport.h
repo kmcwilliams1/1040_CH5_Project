@@ -18,7 +18,6 @@ private:
     // Point 1: List
     list<Flight *> listOfFlights;
 
-
     // Point 5: Queue (Arriving Flights)
     queue<Flight *> arrivingFlights;
 

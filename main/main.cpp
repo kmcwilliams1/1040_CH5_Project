@@ -350,8 +350,8 @@ int main() {
                     case 'B':
                     case 'b': // create new
                     {
-                        auto *tempCrew = new Crew();
-                        collection->addNewCrew(tempCrew);
+
+                        collection->addNewCrew();
                         break;
                     }
                     case 'C':

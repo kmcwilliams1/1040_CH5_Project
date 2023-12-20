@@ -14,6 +14,10 @@ class Collection;
 class Pilot : public Crew {
 
 private:
+
+
+public:
+
     enum class RoleName {
         pilot = 1,
         copilot,
@@ -23,7 +27,6 @@ private:
 
     vector<map<RoleName, string>> assignedFlightsMap;
 
-public:
     // Methods
     Pilot();
     ~Pilot();
@@ -36,6 +39,8 @@ public:
     void addAssignedFlight(const map<RoleName, string> &flight);
     const vector<map<RoleName, string>>& getAssignedFlights() const;
     void clearAssignedFlights();
+
+    void addPilotParameters(Collection *collection);
 };
 
 #endif //INC_1040_CH5_PRACTICEPROJECT_PILOT_H

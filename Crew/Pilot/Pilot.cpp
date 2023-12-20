@@ -2,6 +2,7 @@
 
 #include <sstream>
 #include <iostream>
+#include <random>
 #include "Pilot.h"
 #include "../../main/Collection.h"
 
@@ -165,4 +166,73 @@ Pilot::RoleName Pilot::roleNameFromString(const string &roleStr) {
         return RoleName::pilot;
     }
 }
+
+void Pilot::addPilotParameters(Collection *collection) {
+    string str;
+    cout << "What is the pilot's name?" << endl;
+    cin >> str;
+    setName(str);
+
+
+    random_device rd;
+    mt19937 generator(rd());
+    uniform_int_distribution<int> distribution(1, 20000);
+    int random_number = distribution(generator);
+
+    setEmployeeID(random_number);
+
+
+    cout << "Would you like to create a schedule for " << name << " ?" << endl;
+    char option;
+
+    if (option == 'y' || option == 'Y') {
+
+
+        // loop through flights or airports
+        // then crew.addFlightAssignment
+        // then pilot.addPilotParameters
+        // ask to add another leg, if so, repeat
+
+
+        cout << "Do you want to start out at an airport or with a specific flight? (A/F)" << endl;
+        cin >> option;
+        if (option == 'f' || option == 'F') {
+            for (auto &currentFlights: collection->flights) {
+                cout << currentFlights->getFlightNumber() << endl;
+            }
+        } else if (option == 'a' || option == 'A') {
+            for (auto &currentAirport: collection->airports) {
+                cout << currentAirport->getAirportName() << endl;
+            }
+            cout << "Which airport?" << endl;
+            cin >> str;
+            for (auto &currentAirport: collection->airports) {
+                if (str == currentAirport->getAirportName()) {
+                    currentAirport->getFlightsInvolvingThisAirport();
+                }
+            }
+            cout << "Add pilot to which flight at this airport?" << endl;
+            cin >> str;
+            for (auto &currentFlight: collection->flights) {
+                if (str == currentFlight->getFlightNumber()) {
+                    currentFlight->addCrewMember({{employeeID, Pilot}});
+                }
+            }
+
+        } else { cout << "Not a valid input, please try again" << endl; };
+
+
+
+        //addAssignedFlight();
+
+
+    } else {
+        return;
+    }
+
+
+}
+
+
+
 

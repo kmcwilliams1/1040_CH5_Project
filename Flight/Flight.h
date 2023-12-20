@@ -173,7 +173,6 @@ public:
         isFueled = newIsFueled;
     }
 
-    void addCrewMember(const string &name, Crew::EmployeeType type);
 
     void pushMaintenanceRequest(int id, const vector<string> &requestDescriptions);
 

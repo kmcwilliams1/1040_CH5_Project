@@ -1,6 +1,7 @@
 #include <sstream>
 #include <iostream>
 #include <algorithm>
+#include <random>
 #include "Collection.h"
 
 void Collection::writeFlightProperties(ostream &dataFile, Flight *currentFlight) {
@@ -269,7 +270,19 @@ void Collection::addNewFlight(Flight *pFlight) {
 
 }
 
-void Collection::addNewCrew(Crew *pCrew) {
+void Collection::addNewCrew() {
+
+
+    char option;
+    cout << "Are they a pilot or an attendant? (P/A)" << endl;
+    if (option == 'P' || option == 'p') {
+        auto *pilot = new Pilot;
+        pilot->addPilotParameters(this);
+    } else if (option == 'A' || option == 'a') {
+        auto *attendant = new Attendant;
+        attendant->addAttendantParameters();
+    } else { cout << "Not a valid input, please try again" << endl; }
+
 
 }
 
@@ -286,6 +299,7 @@ void Collection::deleteAirport(Airport *pAirport) {
         delete *it;
     }
 }
+
 void Collection::deleteFlight(Flight *pFlight) {
 
 }
