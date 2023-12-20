@@ -2,10 +2,15 @@
     #include <algorithm>
     #include <iostream>
 
+    void Airport::addFlightToList(Collection *collection) {
+        auto *flight = new Flight;
+        listOfFlights.push_back(flight);
+        delete flight;
+    }
+
     void Airport::addFlightToList(Flight *flight) {
         listOfFlights.push_back(flight);
     }
-
 
     void Airport::removeFlightFromList(const string &flightNumber) {
         listOfFlights.remove_if([flightNumber](const Flight *flight) {

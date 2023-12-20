@@ -131,69 +131,109 @@ int main() {
             case 'a': // manage airport
 
             {
-
-                auto *tempAirport = new Airport();
-
-                cout << "Which airport would you like to manage \n" << endl;
-                for (auto *currentAirport: collection->airports) {
-                    cout << currentAirport->getAirportName() << " - " << currentAirport->getCallSign() << endl;
-                }
-                cout << "Creat new Airport - NEW" << endl;
-                cout << "Enter Airport Abbreviation:   ";
-                cin >> str;
-                for (char &c: str) {
-                    c = static_cast<char>(std::toupper(static_cast<unsigned char>(c)));
-                }
-
-
-                if (str == "NEW") {
-                    collection->addNewAirport(tempAirport);
-                    break;
-                }
-                for (auto &currentAirport: collection->airports) {
-                    if (currentAirport->getCallSign() == str) {
-                        cout << "\n";
-                        tempAirport = currentAirport;
-                    }
-
-                }
-
-
-                cout << "What would you like to do?" << endl;
-                cout << "View info about this airport: A" << endl;
-                cout << "Update this airport:          B" << endl;
-                cout << "Delete this airport:          C" << endl;
+                cout << "What do you want to do?" << endl;
+                cout << "View all airports:       A" << endl;
+                cout << "Create new airport:      B" << endl;
+                cout << "Examine single airport:  C" << endl;
                 cin >> option;
+
                 switch (option) {
-
-
                     case 'A':
-                    case 'a': // view airport
+                    case 'a': // view all
                     {
-                        tempAirport->getFlightsInvolvingThisAirport();
+                        for (auto *currentAirport: collection->airports) {
+                            cout << currentAirport->getAirportName() << " - " << currentAirport->getCallSign() << endl;
+                        }
                         break;
                     }
                     case 'B':
-                    case 'b': // update airport
+                    case 'b': // create new airport
                     {
-                        tempAirport->setAirport();
+                        auto *tempAirport = new Airport();
+                        collection->addNewAirport(tempAirport);
+                        cout << "new airport: " << tempAirport->getAirportName() << endl;
+                        delete tempAirport;
                         break;
-                    }
+                    };
+
                     case 'C':
-                    case 'c': // delete airport
+                    case 'c': // examine single airport
                     {
-                        collection->deleteAirport(tempAirport);
+                        auto *tempAirport = new Airport();
+
+                        cout << "Which airport would you like to examine \n" << endl;
+                        for (auto *currentAirport: collection->airports) {
+                            cout << currentAirport->getAirportName() << " - " << currentAirport->getCallSign() << endl;
+                        }
+
+
+                        cout << "Enter Airport Abbreviation:   ";
+                        cin >> str;
+                        for (char &c: str) {
+                            c = static_cast<char>(std::toupper(static_cast<unsigned char>(c)));
+                        }
+
+
+                        for (auto &currentAirport: collection->airports) {
+                            if (currentAirport->getCallSign() == str) {
+                                cout << "\n";
+                                tempAirport = currentAirport;
+                            }
+
+                        }
+
+
+                        cout << "What would you like to do?" << endl;
+                        cout << "View info about this airport:     A" << endl;
+                        cout << "Update this airport:              B" << endl;
+                        cout << "Add flights to this airport:      C" << endl;
+                        cout << "Delete this airport:              D" << endl;
+                        cin >> option;
+                        switch (option) {
+
+
+                            case 'A':
+                            case 'a': // view airport
+                            {
+                                tempAirport->getFlightsInvolvingThisAirport();
+                                break;
+                            }
+                            case 'B':
+                            case 'b': // update airport
+                            {
+                                tempAirport->setAirport();
+                                break;
+                            }
+                            case 'C':
+                            case 'c': // add flights to this airport
+                            {
+                                tempAirport->addFlightToList(collection);
+                                break;
+                            }
+                            case 'D':
+                            case 'd': // delete airport
+                            {
+                                collection->deleteAirport(tempAirport);
+                                break;
+                            }
+                            default: {
+                                cout << "Not a valid input, please try again." << endl;
+                            }
+                        }
+
+                        delete tempAirport;
                         break;
                     }
-                    default:
-                        cout << "Not a valid input, please try again." << endl;
+
+                    default: {
+                        cout << "Not a valid input, please try again" << endl;
+                        break;
+                    }
                 }
 
 
-                delete tempAirport;
-
-                break;
             }
+                break;
 
             case 'B':
             case 'b': // manage flights
@@ -324,8 +364,9 @@ int main() {
                 }
 
             }
-
                 break;
+
+
             case 'c':
             case 'C': // Manage Crew
             {
@@ -431,23 +472,18 @@ int main() {
                                     collection->deleteCrew(tempCrew);
                                     break;
                                 }
-                                default:
-                                {
+                                default: {
                                     cout << "Unknown option, please try again" << endl;
                                     break;
                                 }
 
                             }
 
-
                             delete tempCrew;
                         }
 
-
-                        break;
-
-
                     }
+                        break;
 
                     default: {
                         cout << "Unknown option please try again" << endl;

@@ -287,6 +287,24 @@ void Collection::addNewCrew() {
 }
 
 void Collection::addNewAirport(Airport *pAirport) {
+
+    cout << "What is the name of the airport?" << endl;
+    string name;
+    cin >> name;
+    pAirport->setAirportName(name);
+
+    cin.ignore();
+    cout << "What is the call sign of the airport?" << endl;
+    cin >> name;
+    pAirport->setCallSign(name);
+
+    cin.ignore();
+    cout << "How many gates does the airport have?" << endl;
+    int gates;
+    cin >> gates;
+    pAirport->setNumberOfGates(gates);
+
+    airports.push_back(pAirport);
     cout << "Hello mrs lady " << endl;
 
 }

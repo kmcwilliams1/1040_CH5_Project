@@ -37,8 +37,8 @@ public: //7 points of study methods
     void printInfo() const;
 
     // Point 1: List
-    void addFlightToList(Flight *flight);
-
+    void addFlightToList(Collection *collection);
+    void addFlightToList(Flight *flight); //for reading from file
     void removeFlightFromList(const string &flightNumber);
 
     list<Flight *> getListOfFlights() const;
